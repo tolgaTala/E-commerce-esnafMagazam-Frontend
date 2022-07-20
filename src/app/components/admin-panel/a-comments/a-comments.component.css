@@ -1,0 +1,13 @@
+.table-head{
+    display: flex;
+    justify-content: space-between;
+}
+.p-button-success{
+    margin-right: 10px;
+}
+.checkText label{
+    width: 200px;
+    overflow: hidden; /* taşacak kısımları gizle. */
+    white-space: nowrap; /* alt satırı gösterme, alt satıra inme. */
+    text-overflow: ellipsis; /* uzunsa sonuna üç nokta koy. */ 
+}

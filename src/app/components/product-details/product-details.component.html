@@ -1,0 +1,240 @@
+<div class="CartContainer" *ngIf="productDto">
+  <div class="image">
+    <p-image src="https://localhost:44312/uploads/{{ productDto.imagePath }}" alt="Image" width="400" height="500" [preview]="true"></p-image>
+
+  </div>
+  <div class="details">
+    <h5 style="font-weight: 650">{{ productDto.categoryName }}</h5>
+    <h5 style="margin-left: 10px">{{ productDto.productName }}</h5>
+    <p>Satıcı: <a routerLink="/magaza/{{productDto.userId}}">{{ productDto.userCompany }}</a></p>
+    <p class="degerlendirme" style="margin-left:0px">
+      {{ yorumlar.length }} Değerlendirme
+    </p>
+    <p class="degerlendirme">| {{soruCevapBoyut}} Soru-Cevap</p>
+    <h2 class="price">{{ productDto.price }} ₺</h2>
+    <hr />
+    <div style="text-align: center">
+      <a (click)="addToBasket()" class="btn btn-success"> Sepete Ekle</a>
+      <div *ngIf="!favorideVarmi(productDto.productId)" class="favori">
+        <a (click)="addToFavorite(productDto.productId)"><i class="mdi mdi-heart-outline"></i></a>
+      </div>
+      <div *ngIf="favorideVarmi(productDto.productId)" class="favoriActive">
+        <a (click)="deleteToFavorite(productDto.productId)"><i class="mdi mdi-heart-outline"></i></a>
+      </div>
+    </div>
+    <div class="favorıSub">
+      <i class="mdi mdi-clock-fast"> Hızlı teslimat - aynı gün kapınızda</i>
+      <p><i class="mdi mdi-heart-outline"></i> {{productDto.likeNumber}} favori</p>
+    </div>
+    <hr />
+    <div class="ürünÖzellikleri">
+      <ul>
+        <li>3 gün içerisinde ücretsiz iade.</li>
+        <li>
+          Bu ürün {{ productDto.userCompany }} tarafından gönderilecektir.
+        </li>
+        <li>
+          İncelemiş olduğunuz ürünün satış fiyatını satıcı belirlemektedir.
+        </li>
+        <li>
+          Bu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki
+          siparişleri ESnafMağazam iptal etme hakkını saklı tutar.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<h3 class="CommentsHeading">Ürün Değerlendirmeleri</h3>
+<div class="CartContainerYorum">
+  <div class="Comments">
+    <div class="stars">
+      <div *ngIf="yorumSkorOrt" class="skor-ort">
+        <div class="skor-and-star">
+          <label>{{yorumSkorOrt}} </label>
+          <p-rating class="star" [ngModel]="yorumSkorOrt" [readonly]="true" [cancel]="false"></p-rating>
+        </div>
+        <label class="degerlendirme">
+          {{ yorumlar.length }} Değerlendirme
+        </label>
+        <input *ngIf="yorumYapsin" (click)="openModal(template3)" type="submit" value="Ürünü Değerlendir" style="font-weight: 500;background-color: coral; height: 38px;text-align: center; padding-left: 20px; padding-right: 20px; border-radius: 3px;color: white; border:1px solid coral; font-size: 15px; float: right;" />
+      </div>
+      <div *ngIf="!yorumSkorOrt" style="display: inline-block; font-size: 15px;display: flex;justify-content: space-between;align-items: center;">
+        <label>Henüz Değerlendirme Yapılmadı</label>
+        <input *ngIf="yorumYapsin" (click)="openModal(template3)" type="submit" value="Ürünü Değerlendir" style="font-weight: 500;background-color: coral; height: 38px;text-align: center; padding-left: 20px; padding-right: 20px; border-radius: 3px;color: white; border:1px solid coral; font-size: 15px; float: right;" />
+      </div>
+    </div>
+  </div>
+  <br />
+  <div *ngFor="let item of yorumDto" class="Comment">
+    <div class="CommentContent">
+      <i *ngFor="let score of createForLoop(item.score)" class="{{score.icon}}"></i>
+
+      <p class="ContentReal"><b>{{item.commentHeading }}</b></p>
+      <p class="ContentReal">{{item.commentContent }}</p>
+    </div>
+    <div class="ContentSub">
+     <p class="kullaniciAdi">{{item.firstName}} {{item.lastName}}</p>  | <p class="yorumTarihi">{{item.commentDate}}</p> | <p class="satici"><span>{{companyName}}</span> Satıcısından alındı. <i style="color: #16be48; font-size: medium;" class="mdi mdi-checkbox-marked-circle">ürünü satın aldı.</i></p>
+    </div>
+  </div>
+</div>
+
+
+<h3 class="CommentsHeading" >SORU-CEVAP</h3>
+<div class="question-cart" *ngIf="productDto">
+  <div class="product-info">
+    <div class="product-info1" style="width: 70%;">
+      <div class="product-img">
+        <img src="https://localhost:44312/uploads/{{ productDto.imagePath }}">
+      </div>
+      <div class="product-name">      
+        <span>{{productDto.productName | uppercase}}</span>
+      </div>
+      <div class="product-description">
+        <span class="text-capitalize">{{productDto.productDescription}}</span>
+      </div>
+    </div>
+    <div class="product-seller" >
+      <div class="popup-question">
+        <input *ngIf="userId" (click)="openModal(template1)" type="submit" value="Soru Sor" style="font-weight: 500;background-color: coral; width: 100%; height: 38px;text-align: center; padding-left: 20px; padding-right: 20px; border-radius: 3px;color: white; border:1px solid coral; font-size: 15px;" />
+        <ng-template #template1>
+          <div class="modal-header">
+            <h5 class="modal-title pull-left">Satcıya Soru Sor</h5>
+            <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+              <span aria-hidden="true" class="visually-hidden">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="question-popup-seller">
+              <p>{{productDto.userCompany}}</p>
+            </div>
+            <form [formGroup]="sellerQuestionAddForm" class="answerform ask-answer-cart">
+              <div class="form-group">
+                
+                <label style="font-weight: 600; margin-bottom: 10px; font-size: 14px;color: #f27a1a;;">Ürün özellikleriyle ilgili sorularınızı buradan satıcıya sorabilirsiniz.</label>
+                <label style="font-weight: 600; margin-bottom: 10px;">Sorunuz</label>
+                <textarea formControlName="question" id="question" placeholder="Soru Sor" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>            
+            </form>
+            <div class="popup-button">
+              <input (click)="sellerQuestionAdd()" type="submit" value="Soru Sor" style="font-weight: 500;background-color: coral; width: 100%; height: 38px;text-align: center; padding-left: 20px; padding-right: 20px; border-radius: 3px;color: white; border:1px solid coral; font-size: 15px;" />
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <span>Satıcı: </span>{{productDto.userCompany}}
+    </div>
+  </div>  
+  <div class="question-detail" *ngFor="let item of sellerQuestions">
+    <div class="ortalama">
+      <div class="question" >
+        <span>Soru: {{item.question}}</span>
+        <div class="question-date">{{item.date | date:'dd-MM-yyyy HH:mm'}}</div>
+      </div>
+      <div class="cevap-ver-buton" *ngIf="getAnswerByQuestionId(item.id).length<1&& soruyaCevapVersinMi()">
+        <input  (click)="openModal(template)" type="submit" value="Cevap Ver" style="font-weight: 500;background-color: coral; height: 38px;text-align: center; padding-left: 20px; padding-right: 20px;margin: 2px; border-radius: 3px;color: white; border:1px solid coral; font-size: 15px;" />
+      </div> 
+    </div>   
+    <div class="answer" *ngFor="let answr of getAnswerByQuestionId(item.id)" >
+      <span ><i class=" mdi mdi-store"></i>{{productDto.productName}} </span><span style="font-weight: 400;">satıcısının cevabı</span>
+      <div ><span class="seller-anwr"> {{answr.answer}}</span></div>
+      <div class="answer-info">
+        <div class="seller-name">{{productDto.userCompany}}</div>
+        <div class="answer-date">{{answr.date | date:'dd-MM-yyyy HH:mm'}}</div>
+        <div style="clear: both;"></div>        
+      </div>      
+    </div>  
+    <div class="answer" *ngIf="getAnswerByQuestionId(item.id).length<1">
+      <span><i class=" mdi mdi-rotate-left" style="color: coral;"></i>Cevap: </span><span style="font-weight: 400;"> Bekleniyor...</span>
+      <div class="answer-info">      
+      </div>
+    </div>    
+      <ng-template #template>
+        <div class="modal-header">
+          <h5 class="modal-title pull-left">Soruya Cevap Ver</h5>
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="sellerAnswerAddForm" class="answerform ask-answer-cart">
+            <div class="form-group">
+              <label style="font-weight: 600; margin-bottom: 10px;">Soru: {{item.question}}</label>
+              <textarea formControlName="answer" id="answer" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Cevabınızı yazınız"></textarea>
+            </div>            
+          </form>
+          <div class="popup-button">
+            <input (click)="sellerAnswerAdd(item.id)" type="submit" value="Cevap Ver" style="font-weight: 500;background-color: coral; width: 100%; height: 38px;text-align: center; padding-left: 20px; padding-right: 20px; border-radius: 3px;color: white; border:1px solid coral; font-size: 15px;" />
+          </div>
+        </div>
+      </ng-template>
+  </div>  
+</div>
+
+
+
+<!-- 
+ürünü Değerlendir  -->
+<ng-template #template3>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body popup-comment">
+    <div>
+      <form [formGroup]="commentAddForm">
+        <div class="product-popup-img">
+          <img src="https://localhost:44312/uploads/{{ productDto.imagePath }}" style="width: 71px;height: 115px;">
+        </div>
+        <div class="product-popup-details">
+          <div class="product-popup-name">{{productDto.productName}}</div>
+          <div class="product-popup-description">{{productDto.productDescription}}</div>
+          <div>
+            <div class="cont">
+              <div class="stars" style="height: 21px;">                   
+                  <ngx-star-rating size="10px" formControlName="score" [id]="'rating'" ></ngx-star-rating>      
+              </div>
+             </div>             
+            <p class="puan-p">Lütfen Ürünü Puanlayın</p> 
+          </div>          
+        </div>
+        <div style="clear: both;"></div>
+        <div class="commnet-textarea">
+          <p>Yorumunuz</p>
+          <input class="form-control" type="text" formControlName="commentHeading" id="commentHeading" placeholder="Yorum Başlığı" />
+          <textarea formControlName="commentContent" id="commentContent" placeholder="Yorum Yaz" class="form-control"></textarea>
+        </div>
+        <div>
+          <input (click)="commentAdd()" class="comment-popup-button" type="submit" value="Yorum Yap">
+        </div>
+      </form>      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+</ng-template>
+
+
+<!-- <div class="Comment" *ngIf="yorumYapsin" style="margin-left: 0px;">
+  <h3 class="CommentsHeading" >Yorum Yap</h3>
+  <div class="commentCart">
+    <form [formGroup]="commentAddForm">
+    <div class="commentText">
+      <input style="width: 100%; border-radius: 10px; padding: 10px 10px; margin-bottom: 10px; border: 1px solid gray;" type="text" formControlName="commentHeading" id="commentHeading" placeholder="Yorum Başlığı" />   
+      <textarea formControlName="commentContent" id="commentContent" placeholder="Yorum Yaz"></textarea>    
+    </div>
+     <div class="star-and-button">
+      <div class="star-rating">
+        <div><h3>Değerlendirme</h3></div>
+        <div class="form-star-rating" style="height: 100px;width: 380px;">                   
+            <ngx-star-rating formControlName="score" [id]="'rating'"></ngx-star-rating>      
+        </div>
+       </div>  
+      <div class="commentButton">
+          <input (click)="commentAdd()" type="submit" class="form-submit pay-button" value="Değerlendir Ve Yorum Yap" style="background-color: coral; height: 55px; padding: 10px 12px;"/>
+      </div>
+     </div>
+    <div style="clear:both"></div>
+  </form>
+  </div>
+  </div> -->

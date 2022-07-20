@@ -1,0 +1,89 @@
+<div class="magaza">
+    <div class="header">
+        <div class="headerBackground" style="background-color:#000000;">
+            <div class="headerBackground-img" style="background: url(https://cdn.dsmcdn.com/seller-store/uploads/195319/b326d03f-8311-49e4-913d-692e897d7f6b.jpeg) no-repeat center;
+            opacity: 0.5;"></div>
+        </div>
+        <div class="headerinner">
+            <div class="headerinner-icon">
+                <img src="https://cdn.dsmcdn.com/seller-store/uploads/195319/5164fc3b-88b0-4e96-986a-fd7e63ac6d31.jpeg" alt="" class="seller-icon">
+            </div>
+            <div class="headerinner-data">
+                <div class="data-title">
+                    <h1 class="title">{{sellerName}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="tab-wrapper">
+            <ul class="navigation-tabs">
+                <li (click)="doOpenAll()" class="ss-tab-active">
+                    <a class="ss-tab-link ">TÜM ÜRÜNLER</a>
+                </li>
+            </ul>
+            <div class="ss-search">
+                <form action="/sr" autocomplete="off">
+                    <input (keyup)="onKey($event)" type="search" minlength="2" placeholder="mağazada ara" name="q" id="" required >
+                    <img src="https://cdn.dsmcdn.com/seller-store/webgw/resources/search-orange-ico.svg" alt="" (click)="search()">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="product-and-filter">
+            <div class="filter">                
+                <label style="margin-bottom:8px ;"><b>Fiyat Aralığı</b></label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="min tutar" aria-label="Dollar amount (with dot and two decimal places)" [(ngModel)]="minPrice">    
+                    <span class="input-group-text" style="color: white; background-color: coral; opacity: 0.9;">₺</span>
+                </div>  
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="max tutar" aria-label="Dollar amount (with dot and two decimal places)" [(ngModel)]="maxPrice">        
+                    <span class="input-group-text" style="color: white; background-color: coral; opacity: 0.9;">₺</span>
+                </div>                  
+                <br>                
+                <div class="form-check form-switch">
+                  <input (click)="artanFiyatMethod(artanFiyat)" type="radio" name="rd" id="rd1" class="form-check-input" style="background-color: coral; width: 60px; height: 20px;">
+                  <label for="rd1" class="form-check-label" style="margin-left: 10px;">En Düşük Fiyat</label>
+                </div>
+                <div class="form-check form-switch" style="margin-top: 10px;">
+                  <input (click)="azalanFiyatMethod(azalanFiyat)" type="radio" name="rd" id="rd2" class="form-check-input" style="background-color: coral; width: 60px; height: 20px;">
+                  <label for="rd2" class="form-check-label" style="margin-left: 10px;">En Yüksek Fiyat</label>
+                </div>
+                <div class="form-check form-switch" style="margin-top: 10px;">
+                  <input (click)="enYenilerMethod(enYeniler)" type="radio" name="rd" id="rd3" class="form-check-input" style="background-color: coral; width: 60px; height: 20px;">
+                  <label for="rd3" class="form-check-label" style="margin-left: 10px;">En Yeni Ürünler</label>
+                </div>                
+                <div class="d-grid gap-2" style="margin-top: 25px;">
+                  <button (click)="getProductsByPrice(minPrice,maxPrice,artanFiyat,azalanFiyat,enYeniler)"  class="btn btn-success" type="button" style="background-color: coral;border: coral;">FİLTRELE</button>
+                </div>
+            </div>
+            <div class="product-container">
+                <div class="product-card" *ngFor="let product of productsDto | filterPipe" >
+                    <div *ngIf="!favorideVarmi(product.productId)" class="favori">
+                        <a (click)="addToFavorite(product.productId)"><i class="mdi mdi-heart-outline"></i></a>
+                      </div>
+                      <div *ngIf="favorideVarmi(product.productId)" class="favoriActive">
+                        <a (click)="deleteToFavorite(product.productId)"><i class="mdi mdi-heart-outline"></i></a>
+                      </div>
+                    <div class="img-container" routerLink="/productdetails/{{ product.productId }}" >
+                        <div class="product-img">
+                            <img src="https://localhost:44312/uploads/{{product.imagePath}}" alt="Product" class="img-responsive" />
+                        </div>
+                    </div>
+                    <div class="product-info-container">
+                        <div class="product-description">
+                            <b class="categori">{{product.categoryName}}</b>
+                            <p class="product-name">{{product.productName}}</p>
+                        </div>
+                        <div class="product-price">{{product.price}}</div>
+                        <div class="product-button">
+                            <button (click)="addToBasket(product.productId)" class="add-basket">Sepete Ekle</button>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>

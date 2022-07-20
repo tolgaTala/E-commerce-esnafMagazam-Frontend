@@ -1,0 +1,55 @@
+<div class="container" *ngIf="orders.length>0&&customers.length>0&&sellers.length>0&&productsDto.length>0">
+    <div class="header">
+        <div class="header-content">
+            <div class="card order-color">
+                <div class="order-card">
+                    <div class="order-left">
+                        <h3>{{orders.length}}</h3>
+                        <p>Teslim Edilen Siparişler</p>
+                    </div>
+                    <div class="order-right">
+                        <i class="pi pi-shopping-bag" style="font-size: 4rem; color: #148A9D;"></i>
+                    </div>
+                </div>
+            </div>            
+            <div class="card customer-color">
+                <div class="customer-card">
+                    <div class="customer-left">
+                        <h3>{{customers.length}}</h3>
+                        <p>Tüm Müşteriler</p>
+                    </div>
+                    <div class="customer-right">
+                        <i class="pi pi-users" style="font-size: 4rem; color: #228E3B;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card seller-color">
+                <div class="seller-card">
+                    <div class="seller-left">
+                        <h3>{{sellers.length}}</h3>
+                        <p>Tüm Esnaflar</p>
+                    </div>
+                    <div class="seller-right">
+                        <i class="pi pi-user-plus" style="font-size: 4rem; color: #D9A406;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card product-color">
+                <div class="product-card">
+                    <div class="product-left">
+                        <h3>{{productsDto.length}}</h3>
+                        <p>Tüm Ürünler</p>
+                    </div>
+                    <div class="product-right">
+                        <i class="pi pi-star-fill" style="font-size: 4rem; color: #BB2D3B;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width:100% ;display: flex;justify-content: center;margin-top: 10px;">
+        <p-chart style="display:inline-block" type="pie" [data]="data" [options]="chartOptions" [style]="{'width': '45%'}"></p-chart>
+    </div>
+</div>
+
+

@@ -1,0 +1,199 @@
+<div *ngIf="addressAddSelect" class="signup-form" id="myModal" class="modal">
+    <div  class="modal-content">
+    <form [formGroup]="addressForm">
+      <span (click)="addClose()" class="close">&times;</span>
+      <h3 class="form-title">Adres Bilgileri</h3>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="firstName"><i class="mdi mdi-account"></i></label>
+            <input
+              type="text"
+              id="firstName"
+              placeholder="Adınız"
+              formControlName="firstName"
+            />
+          </div>
+          <div class="col-md-6 rightlabel" >
+            <i class="mdi mdi-account"></i>
+            <input
+              type="text"
+              id="lastName"
+              placeholder="Soy Adınız"
+              formControlName="lastName"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="phoneNumber"
+              ><i class="mdi mdi-chevron-double-right"></i
+            ></label>
+            <input
+              type="text"
+              id="phoneNumber"
+              placeholder="Telefon Numarası"
+              formControlName="phoneNumber"
+            />
+          </div>
+          <div class="col-md-6 rightlabel" >
+            <i class="mdi mdi-chevron-double-right"></i>
+            <input
+              type="text"
+              id="street"
+              placeholder="Sokak"
+              formControlName="street"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="adresshead"
+          ><i class="mdi mdi-chevron-double-right"></i
+        ></label>
+        <input
+          type="email"
+          id="floatingInput"
+          placeholder="Adres Başlığı"
+          formControlName="addressHead"
+        />
+      </div>
+      <div class="form-group">
+        <label for="addressDetail"
+          ><i class="mdi mdi-chevron-double-right"></i
+        ></label>
+        <input
+          type="text"
+          id="addressDetail"
+          placeholder="Açık Adres"
+          formControlName="addressDetail"
+        />
+      </div>
+    </form>
+    <div class="form-group form-button">
+      <input
+      (click)="addressAdd()"
+        type="submit"
+        name="signup"
+        id="signup"
+        class="form-submit"
+        value="Kaydet Ve Devam Et"
+      />
+    </div>
+    </div>
+  </div>
+  <div class="header">
+      <h5 class="headerP">Kullanıcı Bilgilerim</h5>
+      <p (click)="selectAddAdress()" class="deleteUser"><i class="mdi mdi-plus" style="color: coral;font-size: 25px;font-weight: bold;margin-top: -7px;"></i> Yeni Adres Ekle</p>
+  </div>
+  <div class="addresses">
+      
+      <div *ngFor="let adress of addresses" class="addressCard">
+          <div class="cardUp">
+              <h6 class="addressHead">{{adress.addressHead}}</h6>
+          </div>
+          <div class="cardDown">
+              <p class="name">{{adress.firstName}} {{adress.lastName}}</p>
+              <p class="addressDetail">{{adress.addressDetail}}</p>
+              <p class="street">{{adress.street}}</p>
+              <p class="phoneNumber">{{adress.phoneNumber}}</p>
+          </div>
+          <div class="cardDown2">
+              <div class="delete" (click)="addressDelete(adress.addressId)">
+                  <i class="mdi mdi-delete" style="color: rgb(82, 81, 81);"></i>
+                  <p>Sil</p>
+              </div>
+              <div class="update">
+                  <a (click)="addressUpdate(adress.addressId)" class="btn btn-outline-warning">Adresi Düzenle</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div *ngIf="addressUpdateSelect" class="signup-form" id="updateModal" class="modal">
+    <div class="modal-content">
+    <form [formGroup]="addressForm2">
+      <span (click)="updateClose()" class="close">&times;</span>
+      <h3 class="form-title">Adres Bilgileri Güncelleme</h3>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="firstName"><i class="mdi mdi-account"></i></label>
+            <input
+              type="text"
+              id="firstName"
+              placeholder="Adınız"
+              formControlName="firstName"
+            />
+          </div>
+          <div class="col-md-6 rightlabel" >
+            <i class="mdi mdi-account"></i>
+            <input
+              type="text"
+              id="lastName"
+              placeholder="Soy Adınız"
+              formControlName="lastName"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="phoneNumber"
+              ><i class="mdi mdi-chevron-double-right"></i
+            ></label>
+            <input
+              type="text"
+              id="phoneNumber"
+              placeholder="Telefon Numarası"
+              formControlName="phoneNumber"
+            />
+          </div>
+          <div class="col-md-6 rightlabel" >
+            <i class="mdi mdi-chevron-double-right"></i>
+            <input
+              type="text"
+              id="street"
+              placeholder="Sokak"
+              formControlName="street"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="adresshead"
+          ><i class="mdi mdi-chevron-double-right"></i
+        ></label>
+        <input
+          type="email"
+          id="floatingInput"
+          placeholder="Adres Başlığı"
+          formControlName="addressHead"
+        />
+      </div>
+      <div class="form-group">
+        <label for="addressDetail"
+          ><i class="mdi mdi-chevron-double-right"></i
+        ></label>
+        <input
+          type="text"
+          id="addressDetail"
+          placeholder="Açık Adres"
+          formControlName="addressDetail"
+        />
+      </div>
+    </form>
+    <div class="form-group form-button">
+      <input
+      (click)="realAddressUpdate()"
+        type="submit"
+        name="signup"
+        id="signup"
+        class="form-submit"
+        value="Kaydet Ve Devam Et"
+      />
+    </div>
+    </div>
+  </div>

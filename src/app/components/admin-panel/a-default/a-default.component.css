@@ -1,0 +1,39 @@
+.header-content{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.card{
+    width: 290px;
+    height: 125px;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 10px;
+    justify-content: center;
+    cursor: pointer;
+}
+.order-card,.seller-card,.customer-card,.product-card{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.order-color{
+    background-color: #17a2b8;
+    color: #fff;
+}
+.seller-color{
+    background-color: #FFC107;
+    color: black;
+}
+.customer-color{
+    background-color: #28A745;
+    color: #fff;
+}
+.product-color{
+    background-color: #DC3545;
+    color: #fff;
+}

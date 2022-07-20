@@ -1,0 +1,42 @@
+<body class="text-center">
+<!-- Sing in  Form -->
+<section class="sign-in">
+    <div class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><img src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg" alt="sing in image"></figure>
+                <a routerLink="../register" class="signup-image-link">Hesabım Yok</a>
+            </div>
+
+            <div class="signin-form">
+                <h2 class="form-title">Giriş Yap</h2>
+                <form [formGroup]="loginForm">
+                    <div class="form-group">
+                        <label for="your_name"><i class="mdi mdi-account"></i></label>
+                        <input formControlName="email" type="email" class="form-control" id="floatingInput" placeholder="Email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="your_pass"><i class="mdi mdi-lock"></i></label>
+                        <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Parola"/>
+                    </div>
+                    <!-- <div class="form-group">
+                        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Beni Hatırla</label>
+                    </div> -->
+                    <div class="form-group form-button">
+                        <button (click)="login()" class="w-100 btn btn-lg btn-primary" type="submit">Giriş Yap</button>
+                    </div>
+                </form>
+                <!-- <div class="social-login">
+                    <span class="social-label">Ya da bunlarla giriş yap</span>
+                    <ul class="socials">
+                        <li><a href="#"><i class="display-flex-center mdi mdi-facebook zmdi zmdi-facebook" ></i></a></li>
+                        <li><a href="#"><i class="display-flex-center mdi mdi-twitter zmdi zmdi-twitter"></i></a></li>
+                        <li><a href="#"><i class="display-flex-center mdi mdi-gmail zmdi zmdi-google"></i></a></li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+</body>

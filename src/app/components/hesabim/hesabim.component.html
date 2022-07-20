@@ -1,0 +1,18 @@
+<div class="hesabimMain">
+    <div class="row">
+        <div class="col-md-3" >
+            <div class="solTaraf">
+                <h4 class="hesabimH3">Hesabım</h4>
+                <div routerLink="profil" class="hesabimP"><p><i class="mdi mdi-account"></i> Profilim</p></div>
+                <div routerLink="siparislerim" class="hesabimP"><p><i class="mdi mdi-cube-outline"></i> Siparişlerim</p></div>
+                <div routerLink="adres" class="hesabimP"><p><i class="mdi mdi-map-marker"></i> Adres Bilgilerim</p></div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <!-- <app-profile *ngIf="profile" class="profile"></app-profile>
+            <app-myorder *ngIf="orders" class="profile"></app-myorder>
+            <app-address *ngIf="address" class="profile"></app-address> -->
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+.myorderbox{
+    border-radius: 4px;
+    box-shadow: 0px 10px 20px #1687d933;
+    margin-top: 20px;
+    
+}
+.order-info{
+  padding: 20px;
+  background-color: #fafafa;    
+  border: 1px solid #e2e2e2;
+}
+
+.order-detail{
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.order-detail-content{
+  padding: 15px;
+  display: inline-block;
+  align-items: center;
+  width: 95%;
+  border: 1px solid #e2e2e2;
+  background: #faf9f9;;
+  margin-bottom: 3px;
+}
+
+
+.orderHeadContent{
+  width: 20%;
+}
+
+.orderDate .orderNo .orderSabip .orderAmount{
+  color: gray;
+}
+
+.orderDateDb{
+  font-size: 12px;
+}
+
+.orderNoDb{
+  font-size: 12px;
+}
+
+.orderSabbipDb{
+  font-size: 12px;
+}
+
+.orderAmountDb{
+  font-size: 12px;
+}
+/* 
+*, *::after, *::before{
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+}
+body{
+  font-family: "Poppins", sans-serif;
+}
+div.c{
+  position: relative;
+  margin:2em;
+}
+/* input{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity:0;
+  visibility: 0;
+} */
+/* .orderCart{
+  background:white;
+  padding:10px;
+  position: relative;
+  border-right: 1px solid #1687d933;
+  border-left: 1px solid #1687d933;
+  border-top: 1px solid #1687d933;
+  border-radius: 4px;
+  box-shadow: 0px 10px 20px #1687d933;
+}
+label{
+  cursor: pointer;
+  position: relative;
+  display: flex;
+
+}
+div.p{
+  max-height:0px;
+  overflow: hidden;
+  transition:max-height 0.5s;
+  background-color: white;
+  box-shadow:0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+div.p p {
+  padding:2em;
+}
+input:checked ~ .orderCart label::before{
+  border-left:15px solid transparent;
+  border-top:20px solid white;
+  margin-top:12px;
+  margin-right:10px;
+}
+input:checked ~ .orderCart ~ div.p{
+  max-height:100px;
+}
+a{
+  color:steelblue;
+} */ 
+
+

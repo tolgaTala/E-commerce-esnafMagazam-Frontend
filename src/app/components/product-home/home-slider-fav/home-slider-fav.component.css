@@ -1,0 +1,114 @@
+.product-item-content {
+    border: 1px solid var(--surface-d);
+    border-radius: 3px;
+    margin: .3rem;
+    text-align: center;
+    padding: 1rem 0;
+    height: 335px;
+}
+
+.product-image {
+    max-height: 200px;
+    max-width: 100%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+}
+.product-cntnt{
+    text-align: center;
+    height: 410px;
+    width: 220px;
+}
+.product-description{
+    height: 30px;
+    overflow: hidden; /* taşacak kısımları gizle. */
+    white-space: nowrap; /* alt satırı gösterme, alt satıra inme. */
+    text-overflow: ellipsis; /* uzunsa sonuna üç nokta koy. */ 
+}
+.div-img{
+    height: 205px;
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    align-content: stretch;
+    align-items: center;
+}
+.product-list-action {
+display: flex;
+flex-direction: column;
+margin-top: 2rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+padding-left:5%;
+padding-right: 5%;
+}
+.product-price {
+align-self: center;
+}
+.img-byt{
+    display: flex;
+    align-items: center !important;
+    justify-content: center;
+    width: 200px !important;
+    height:290px !important;
+    width: 100%;
+    padding: 5px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.p-carousel-items-content{
+    height: 400px !important;
+}
+
+.card {
+    padding: 1rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    height: 390px;
+}
+
+.product-list-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+}
+
+.product-list-detail {
+    flex: 1 1 0;
+}
+
+.p-rating {
+    margin: 0 0 .5rem 0;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+    align-self: flex-end;    
+}
+
+.product-list-action {
+    display: flex;
+    flex-direction: column;
+}
+
+.p-button {
+    margin-bottom: .5rem;
+}
+.product-grid-item-top,.product-grid-item-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.p-md-4 {
+    padding: 0.5rem!important;
+}
+.product-name{
+    overflow: hidden; /* taşacak kısımları gizle. */
+    white-space: nowrap; /* alt satırı gösterme, alt satıra inme. */
+    text-overflow: ellipsis; /* uzunsa sonuna üç nokta koy. */ 
+}

@@ -1,0 +1,74 @@
+
+<div class="row">  
+  <div class="col-md-2" id="filter-bar">
+    <label style="margin-bottom:8px;margin-top: 15px;"><b>Fiyat Aralığı</b></label>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="min tutar" aria-label="Dollar amount (with dot and two decimal places)" [(ngModel)]="minPrice">    
+      <span class="input-group-text" style="color: white; background-color: coral; opacity: 0.9;">₺</span>
+    </div>  
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="max tutar" aria-label="Dollar amount (with dot and two decimal places)" [(ngModel)]="maxPrice">        
+      <span class="input-group-text" style="color: white; background-color: coral; opacity: 0.9;">₺</span>
+    </div>  
+    <br>
+
+    <div class="form-check form-switch">
+      <input (click)="artanFiyatMethod(artanFiyat)" type="radio" name="rd" id="rd1" class="form-check-input" style="background-color: coral; width: 60px; height: 20px;">
+      <label for="rd1" class="form-check-label" style="margin-left: 10px;">En Düşük Fiyat</label>
+    </div>
+    <div class="form-check form-switch" style="margin-top: 10px;">
+      <input (click)="azalanFiyatMethod(azalanFiyat)" type="radio" name="rd" id="rd2" class="form-check-input" style="background-color: coral; width: 60px; height: 20px;">
+      <label for="rd2" class="form-check-label" style="margin-left: 10px;">En Yüksek Fiyat</label>
+    </div>
+    <div class="form-check form-switch" style="margin-top: 10px;">
+      <input (click)="enYenilerMethod(enYeniler)" type="radio" name="rd" id="rd3" class="form-check-input" style="background-color: coral; width: 60px; height: 20px;">
+      <label for="rd3" class="form-check-label" style="margin-left: 10px;">En Yeni Ürünler</label>
+    </div>
+
+    <div class="d-grid gap-2" style="margin-top: 25px;">
+      <button (click)="getProductsByPrice(minPrice,maxPrice,categoryId,artanFiyat,azalanFiyat,enYeniler)" class="btn btn-success" type="button" style="background-color: coral;border: coral;">FİLTRELE</button>
+    </div>
+</div>
+
+
+
+
+<div class="col-md-10">
+  <div *ngIf="dataLoaded==false" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let product of productsTrue | filterPipe"  class="col-md-3" >
+        <div  class="wsk-cp-product">
+          <div *ngIf="!favorideVarmi(product.productId)" class="favori">
+            <a (click)="addToFavorite(product.productId)"><i class="mdi mdi-heart-outline"></i></a>
+          </div>
+          <div *ngIf="favorideVarmi(product.productId)" class="favoriActive">
+            <a (click)="deleteToFavorite(product.productId)"><i class="mdi mdi-heart-outline"></i></a>
+          </div>
+          <div routerLink="/productdetails/{{ product.productId }}" class="wsk-cp-img">            
+            <img src="https://localhost:44312/uploads/{{product.imagePath}}" alt="Product" class="img-responsive" />            
+          </div>
+          <div class="wsk-cp-text">
+            <div routerLink="/productdetails/{{ product.productId }}" class="category">
+              <span>{{product.productName | uppercase}}</span>
+            </div>
+            <div routerLink="/productdetails/{{ product.productId }}" class="title-product">
+              <p>{{product.userCompany}}</p>
+            </div>
+            <div routerLink="/productdetails/{{ product.productId }}" class="description-prod">
+              <p>{{product.productDescription}}</p>
+            </div>
+            <div class="card-footer">
+              <div class="wcf-left"><span class="price">Fiyat: {{product.price}}<i style="font-weight:bold;" class="mdi mdi-currency-try"></i></span></div>
+              <div class="wcf-right"><a routerLink="/products" (click)="addToBasket(product.productId)" class="buy-btn"><i style="font-size:30px;" class="mdi mdi-shopping"></i></a></div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+

@@ -1,0 +1,310 @@
+<div class="esnafPanel">
+    <div class="header1 col-md-12">
+        <div class="headerBackground" style="background-color:#000000;">
+            <div class="headerBackground-img" style="background: url(https://cdn.dsmcdn.com/seller-store/uploads/195319/b326d03f-8311-49e4-913d-692e897d7f6b.jpeg) no-repeat center;
+            opacity: 0.5;"></div>
+        </div>
+        <div class="headerinner">
+            <div class="headerinner-icon">
+                <img src="https://localhost:44312/uploads/images/dd1e25a1f172496fb10ce220b6a8c8bf.JPG" alt="" class="seller-icon">
+            </div>
+            <div class="headerinner-data">
+                <div class="data-title">
+                    <h1 class="title">{{sellerName}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel col-md-3">
+            <div class="tab-wrapper">
+            <ul class="navigation-tabs">
+                <li (click)="showTrueProducts()" [class]="openMain()">
+                    <a class="ss-tab-link">LİSTENEN ÜRÜNLER</a>
+                </li>
+                <li (click)="showFalseProducts()" [class]="openAll()">
+                    <a class="ss-tab-link">ASKIYA ALINANLAR</a>
+                </li>
+                <li (click)="showStoks()" [class]="classStoks()">
+                    <a class="ss-tab-link">STOK KONTROL</a>
+                </li>
+                <li (click)="showOrderWaits()" [class]="classWaiting()">
+                    <a class="ss-tab-link">GELEN SİPARİŞLER</a>
+                </li>
+                <li (click)="showOrderComplete()" [class]="classComplete()">
+                    <a class="ss-tab-link">TAMAMLANANLAR</a>
+                </li>
+                <li (click)="showQuastions()" [class]="classQuastions()">
+                    <a class="ss-tab-link">GELEN SORULAR</a>
+                </li>
+                <li (click)="doAdd()" [class]="openProductAdd()">
+                    <a class="ss-tab-link">YENİ ÜRÜN EKLE</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <div class="magaza col-md-9">
+            <div *ngIf="statusTrue" class="product-container">
+                <div class="product-card" *ngFor="let product of productsTrue" >
+                    <div>   
+                       <div class="favori">
+                         <a (click)="suspend(product.productId)"><i class="mdi mdi-close"></i></a>
+                       </div>
+                     <div class="img-container" routerLink="/productdetails/{{ product.productId }}" >
+                         <div class="product-img">
+                             <img src="https://localhost:44312/uploads/{{product.imagePath}}" alt="Product" class="img-responsive" />
+                         </div>
+                     </div>
+                     <div class="product-info-container">
+                         <div class="product-description">
+                             <b class="categori">{{product.categoryName}}</b>
+                             <p class="product-name">{{product.productName}}</p>
+                         </div>
+                         <div class="product-price">{{product.price}} <i style="font-weight:bold;" class="mdi mdi-currency-try"></i></div>
+                         <div class="product-button">
+                             <button (click)="openModal(template3,product)" class="add-basket">Ürünü güncelle</button>
+                         </div>
+                     </div>
+                    </div>   
+                </div> 
+            </div>
+            <div *ngIf="statusFalse" class="product-container">
+                <div class="product-card" *ngFor="let product of productsFalse" >
+                    <div>   
+                       <div class="favori">
+                         <a (click)="retrieve(product.productId)"><i class="mdi mdi-check"></i></a>
+                       </div>
+                     <div class="img-container" routerLink="/productdetails/{{ product.productId }}" >
+                         <div class="product-img">
+                             <img src="https://localhost:44312/uploads/{{product.imagePath}}" alt="Product" class="img-responsive" />
+                         </div>
+                     </div>
+                     <div class="product-info-container">
+                         <div class="product-description">
+                             <b class="categori">{{product.categoryName}}</b>
+                             <p class="product-name">{{product.productName}}</p>
+                         </div>
+                         <div class="product-price">{{product.price}} <i style="font-weight:bold;" class="mdi mdi-currency-try"></i></div>
+                         <div class="product-button">
+                            <button (click)="openModal(template3,product)" class="add-basket">Ürünü güncelle</button>
+                         </div>
+                     </div>
+                 </div>   
+           </div> 
+            </div>     
+            <div *ngIf="clickWaiting" class="orderWaiting">
+                <div class="order-detail-content">                    
+                    <p-confirmDialog [style]="{width: '60vw'}"></p-confirmDialog>
+                <div class="card">
+                    <p-table #dt [value]="artisansOrdersFalse" dataKey="productId" sortMode="multiple" 
+                    [rows]="6" [showCurrentPageReport]="true" [selectionPageOnly]="true" styleClass="p-mt-5" [loading]="loading"
+                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    >                        
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th >Ürün Adı</th>
+                                <th >Resim</th>
+                                <th >Fiyat</th>
+                                <th >Adet</th>
+                                <th>Sipariş Sahibi</th>            
+                                <th>Adres Başlığı</th>
+                                <th >Telefon</th>
+                                <th >Tarih</th>
+                                <th >Durum</th>
+                                <th >Gönder</th>
+                                <th></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-order>
+                            <tr>
+                                <td>{{order.productName}}</td>
+                                <td><img src="https://localhost:44312/uploads/{{order.productImage}}" [alt]="order.name" width="100" class="shadow-4" /></td>
+                                <td>{{order.price}} ₺</td>
+                                <td>{{order.quantity}}</td>
+                                <td>{{order.firstName}} {{order.lastName}}</td>
+                                <td>{{order.addressHead}}</td>
+                                <td>{{order.phoneNumber}}</td>
+                                <td>{{order.createDate |date:'dd-MM-yyyy HH:mm'}}</td> 
+                                <td>Gönderilmeyi Bekliyor</td>
+                                <td>
+                                    <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success mr-2" (click)="orderComplete(order.orderId,order.productID)"></button>
+                                </td>     
+                            </tr>
+                        </ng-template>
+                        
+                    </p-table>
+                </div>
+            </div>            
+            </div>
+            <div *ngIf="clickComplete" class="orderWaiting">
+                <div *ngIf="clickComplete" class="order-detail-content">                    
+                    <p-confirmDialog [style]="{width: '60vw'}"></p-confirmDialog>
+                <div class="card">
+                    <p-table #dt [value]="artisansOrdersTrue" dataKey="productId" sortMode="multiple" 
+                    [rows]="6" [showCurrentPageReport]="true" [selectionPageOnly]="true" styleClass="p-mt-5" [loading]="loading"
+                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    >                        
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th >Ürün Adı</th>
+                                <th >Resim</th>
+                                <th >Fiyat</th>
+                                <th >Adet</th>
+                                <th>Sipariş Sahibi</th>            
+                                <th>Adres Başlığı</th>
+                                <th >Telefon</th>
+                                <th >Tarih</th>
+                                <th >Durum</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-order>
+                            <tr>
+                                <td>{{order.productName}}</td>
+                                <td><img src="https://localhost:44312/uploads/{{order.productImage}}" [alt]="order.name" width="100" class="shadow-4" /></td>
+                                <td>{{order.price}} ₺</td>
+                                <td>{{order.quantity}}</td>
+                                <td>{{order.firstName}} {{order.lastName}}</td>
+                                <td>{{order.addressHead}}</td>
+                                <td>{{order.phoneNumber}}</td>
+                                <td>{{order.createDate |date:'dd-MM-yyyy HH:mm'}}</td> 
+                                <td>Gönderildi</td>  
+                            </tr>
+                        </ng-template>
+                        
+                    </p-table>
+                </div>
+            </div> 
+            </div>
+            <div *ngIf="clickQuastions" class="product-container">
+                <div class="order-detail-content" style="width: 100%">                    
+                    <p-confirmDialog [style]="{width: '60vw'}"></p-confirmDialog>
+                <div class="card">
+                    <p-table #dt [value]="esnafAnswerDtoTrue" dataKey="productId" sortMode="multiple" 
+                    [rows]="6" [showCurrentPageReport]="true" [selectionPageOnly]="true" styleClass="p-mt-5" [loading]="loading"
+                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    >                        
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th >Soru</th>
+                                <th >Soran</th>
+                                <th >Ürün Adı</th>
+                                <th>Sorulduğu Tarih</th>
+                                <th>Soruya Cevap Ver</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-quastion>
+                            <tr>
+                                <td>{{quastion.quastion}} </td>
+                                <td>{{quastion.firstName}} {{quastion.lastName}}</td>
+                                <td>{{quastion.productName}}</td>
+                                <td>{{quastion.quastionDate |date:'dd-MM-yyyy HH:mm'}}</td> 
+                                 <td>
+                                    <button pButton pRipple  class="p-button-success" (click)="openModal2(template)" > Soruya Cevap Ver</button>
+                                </td>     
+                            </tr>
+                            
+                            <ng-template #template>
+                                <div class="modal-header">
+                                  <h5 class="modal-title pull-left">Soruya Cevap Ver</h5>
+                                  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                                    <span aria-hidden="true" class="visually-hidden">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form [formGroup]="sellerAnswerAddForm" class="answerform ask-answer-cart">
+                                    <div class="form-group">
+                                      <label style="font-weight: 600; margin-bottom: 10px;">Soru: {{quastion.quastion}}</label>
+                                      <textarea formControlName="answer" id="answer" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Cevabınızı yazınız"></textarea>
+                                    </div>            
+                                  </form>
+                                  <div class="popup-button">
+                                    <input (click)="answer(quastion.id)" type="submit" value="Cevap Ver" style="font-weight: 500;background-color: coral; width: 100%; height: 38px;text-align: center; padding-left: 20px; padding-right: 20px; border-radius: 3px;color: white; border:1px solid coral; font-size: 15px;" />
+                                  </div>
+                                </div>
+                              </ng-template>
+                              
+                        </ng-template>
+                        
+                    </p-table>
+                </div>
+                
+            </div>  
+                
+            </div> 
+            <div *ngIf="clickStoks" class="orderWaiting">
+                <div class="order-detail-content">                    
+                    <p-confirmDialog [style]="{width: '60vw'}"></p-confirmDialog>
+                <div class="card">
+                    <p-table #dt [value]="stoksProducts" dataKey="productId" sortMode="multiple" 
+                    [rows]="6" [showCurrentPageReport]="true" [selectionPageOnly]="true" styleClass="p-mt-5" [loading]="loading"
+                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    >                        
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th >Ürün Adı</th>
+                                <th >Ürün Resmi</th>
+                                <th >Kategori</th>
+                                <th >Beğeni Sayısı</th>
+                                <th>Fiyatı</th>            
+                                <th>Stok Bilgisi</th>                                
+                                <th >Stok Güncelle</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-product>
+                            <tr *ngIf="product.unitInStock<10">
+                                <td>{{product.productName}}</td>
+                                <td><img src="https://localhost:44312/uploads/{{product.imagePath}}" [alt]="product.name" width="100" class="shadow-4" /></td>
+                                <td>{{product.categoryName}} </td>
+                                <td>{{product.likeNumber}}</td>
+                                <td>{{product.price}} ₺</td>
+                                <td>
+                                    <span class="p-float-label">
+                                        <input id="{{product.unitInStock}}" type="text" pInputText [(ngModel)]="newStok"> 
+                                        <label for="{{product.unitInStock}}">Şuan ki Stok = {{product.unitInStock}}</label>
+                                    </span>
+                                </td>
+                                <td>
+                                    <button pButton pRipple  class="p-button-success" (click)="updateStok(product.productId)"> Stok Güncelle</button>
+                                </td>     
+                                
+                            </tr>
+                        </ng-template>
+                        
+                    </p-table>
+                </div>
+            </div>            
+            </div>
+            <app-product-add *ngIf="clickAdd"></app-product-add>                                
+        </div>   
+    </div>   
+    <ng-template #template3>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Ürünü Güncelle</h4>
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body popup-comment">
+          
+          <div>
+            <form [formGroup]="productUpdateForm">
+              <div class="product-popup-img" *ngIf="productUpdateForm">
+                <label>Ürün Adı</label>
+                <input id="productName" formControlName="productName" class="form-control" type="text"  />
+                <label>Ürün Açıklaması</label>
+                <textarea id="productDescription" formControlName="productDescription"  class="form-control"></textarea>
+                <label>Fiyat</label>
+                <input id="price" formControlName="price"  class="form-control" type="text"/>
+                <label>Stok Adedi</label>
+                <input id="unitInStock" formControlName="unitInStock"  class="form-control" type="text"/><br>
+                <label>Eklemek istediğiniz resmi seçiniz</label>
+                <div class="form-group">
+                  <input class="form-control" type="file" (change)="onFileSelected($event)" name="name" multiple/>
+                </div>
+              </div><br>
+              <input class="p-button-success mr-2" pButton pRipple type="button" (click)="updateProduct()" value="Ürün Ekle"><br>         
+            </form>      
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+      </ng-template>

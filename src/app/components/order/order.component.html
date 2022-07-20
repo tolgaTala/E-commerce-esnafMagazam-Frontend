@@ -1,0 +1,409 @@
+<body style="width: 70%;display: inline-block;">
+  <div class="main">
+    <div class="signup">
+      <div class="container">
+        <div class="contentt">
+          <ul class="nav nav-tabs">
+            <li [class]="doActiveAdres()" style="width: 50%; cursor: pointer">
+              <a (click)="adres()">
+                <div class="addressInfo">
+                  <h5 style="color: coral; font-weight: bold">
+                    Adres Bilgileri
+                  </h5>
+                  <div *ngIf="adress">
+                    <div class="cardUp">
+                      <h6 class="addressHead">{{ adress.addressHead }}</h6>
+                    </div>
+                    <div class="cardDown">
+                      <p class="addressDetail">{{ adress.addressDetail }}</p>
+                    </div>
+                  </div>
+                  <h6 *ngIf="!adress" class="addressHead">
+                    Aşağıdaki adreslerinizden birini seçiniz ya da adres
+                    ekleyiniz.
+                  </h6>
+                </div>
+              </a>
+            </li>
+            <li [class]="doActiveOdeme()" style="width: 50%; cursor: pointer">
+              <a>
+                <div class="addressInfo">
+                  <h5 style="color: coral; font-weight: bold">
+                    Ödeme Seçenekleri
+                  </h5>
+                  <div class="cardUp">
+                    <h6 class="addressHead">
+                      Ödeminizi kartla ya da kapıda ödeme yapabilirsiniz
+                    </h6>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+          <div *ngIf="odeme1 == true" class="signup-form" >
+            <h4 class="form-title">ÖDEME SEÇENEKLERİ</h4>
+            <div class="">
+              <div
+                class="accordion accordion-flush"
+                id="accordionFlushExample"
+              >
+                <div class="accordion-item">
+                  <h1 class="accordion-header" id="flush-headingOne">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseOne"
+                      aria-expanded="false"
+                      aria-controls="flush-collapseOne"
+                    >
+                      KART İLE ÖDEME
+                    </button>
+                  </h1>
+                  <div
+                    id="flush-collapseOne"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample"
+                  >
+                    <div class="accordion-body">
+                      <div class="form-cart">
+                        <form [formGroup]="paymentForm">
+                          <p style="font-size: 22px; margin-bottom: 15px">
+                            Kart Bilgileri
+                          </p>
+                          <div class="cart- form-group">
+                            <p>Kartın Sahibi</p>
+                            <input
+                              formControlName="cardHolder"
+                              type="text"
+                              class="form-control"
+                              id="cardNumber"
+                              style="
+                                width: 100%;
+                                height: 45px;
+                                border: 1px solid gray;
+                                border-radius: 10px;
+                                border-left-width: 8px;
+                                border-left-color: coral;
+                                font-size: large;
+                                padding: 5px 5px;
+                              "
+                            />
+                          </div>
+                          <div class="cart-number form-group">
+                            <p>Kart Numarası</p>
+                            <input
+                              formControlName="cardNumber"
+                              maxlength="16"
+                              type="text"
+                              class="form-control"
+                              id="cardNumber"
+                              style="
+                                width: 100%;
+                                letter-spacing: 2px;
+                                height: 45px;
+                                border: 1px solid gray;
+                                border-radius: 10px;
+                                border-left-width: 8px;
+                                border-left-color: coral;
+                                font-size: large;
+                                padding: 5px 5px;
+                              "
+                            />
+                          </div>
+                          <div class="cart-details form-group">
+                            <div class="cart-date">
+                              <p>Son Kullanma Tarihi</p>
+                              <input
+                                formControlName="expirationMonth"
+                                type="text"
+                                class="form-control"
+                                id="expirationMonth"
+                                maxlength="2"
+                                placeholder="Ay"
+                                style="
+                                  width: 40%;
+                                  height: 45px;
+                                  border: 1px solid gray;
+                                  border-radius: 10px;
+                                  border-left-width: 8px;
+                                  border-left-color: coral;
+                                  font-size: large;
+                                  float: left;
+                                  padding: 5px 5px;
+                                "
+                              />
+                              <input
+                                formControlName="expirationYear"
+                                type="text"
+                                class="form-control"
+                                id="expirationYear"
+                                maxlength="4"
+                                placeholder="Yıl"
+                                type="text"
+                                style="
+                                  width: 40%;
+                                  height: 45px;
+                                  border: 1px solid gray;
+                                  border-radius: 10px;
+                                  border-left-width: 8px;
+                                  border-left-color: coral;
+                                  font-size: large;
+                                  float: left;
+                                  margin-left: 10px;
+                                  padding: 5px 5px;
+                                "
+                              />
+                              <div style="clear: both"></div>
+                            </div>
+                            <div class="cart-cvv form-group">
+                              <p>CVV</p>
+                              <input
+                                formControlName="cvv"
+                                type="text"
+                                class="form-control"
+                                id="cvv"
+                                maxlength="3"
+                                style="
+                                  height: 45px;
+                                  border: 1px solid gray;
+                                  border-radius: 10px;
+                                  border-left-width: 8px;
+                                  border-left-color: coral;
+                                  font-size: large;
+                                  padding: 5px 5px;
+                                "
+                              />
+                            </div>
+                            <div style="clear: both"></div>
+                          </div>
+                        </form>
+                        <div class="form-group form-button">
+                          <input
+                            (click)="PaymentControl()"
+                            type="submit"
+                            name="signup"
+                            id="signup"
+                            class="form-submit pay-button"
+                            value="Kart İle Ödeme Yap"
+                            style="
+                              background-color: coral;
+                              height: 50px;
+                              padding: 8px 10px;
+                            "
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h1 class="accordion-header" id="flush-headingTwo">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="flush-collapseTwo"
+                    >
+                      KAPIDA ÖDEME
+                    </button>
+                  </h1>
+                  <div
+                    id="flush-collapseTwo"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="flush-headingTwo"
+                    data-bs-parent="#accordionFlushExample"
+                  >
+                    <div class="accordion-body">
+                      <div class="form-group form-button">
+                        <input
+                          type="submit"
+                          name="signup"
+                          id="signup"
+                          class="form-submit pay-button"
+                          value="Kapıda Ödeme Yap"
+                          style="
+                            background-color: coral;
+                            height: 50px;
+                            padding: 8px 10px;
+                          "
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="adres1 == true && maTtotal > 0" class="addresses" style="float:left">
+    <div class="addressesTop">
+      <h3>Teslimat Adresi</h3>
+      <div class="addressesshow">
+        <div (click)="openModal(template)" class="newAddressAdd">
+          <i
+            class="mdi mdi-plus"
+            style="color: coral; font-size: 25px; font-weight: bold"
+          ></i>
+          <p style="margin-top: -15px; color: black">Yeni Adres Ekle</p>
+        </div>
+        <div *ngFor="let address of addresses" class="myAddresses">
+          <div (click)="takeAddressInfo(address.addressId)">
+            <div class="nameblock">
+              <div class="namethink">
+                <i
+                  class="mdi mdi-account"
+                  style="color: coral; margin-top: -11px; font-size: 25px"
+                ></i>
+                <p>{{ address.firstName }} {{ address.lastName }}</p>
+              </div>
+              <p style="color: black; float: right; margin-top: -31px">
+                <i class="mdi mdi-phone"></i>{{ address.phoneNumber }}
+              </p>
+            </div>
+            <div class="detailblock">
+              <p style="font-size: small">{{ address.addressDetail }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="baskets.length != 0" class="CartContainer2">
+    <div class="orderSummery">
+      <h5>Sipariş Özeti</h5>
+      <div class="summaryDetail">
+        <div class="amountText">
+          <p>Ara toplam</p>
+          <p>{{total}} ₺</p>
+        </div>
+        <div class="amountText">
+          <p>Kargo toplam</p>
+          <p>11.99 ₺</p>
+        </div>
+        <div class="amountText">
+          <p>50₺ üzeri kargo</p>
+          <p style="color: coral;">-11.99 ₺</p>
+        </div>
+        <hr>
+        <div class="amountText">
+          <p>Toplam</p>
+          <p style="color: coral;">{{maTtotal}} ₺</p>
+        </div>
+      </div>
+  
+      
+    </div>
+    <div  (click)="PaymentControl()" class="recordAndGo">
+        <h6>Alışverişi Tamamla</h6>
+    </div>
+    
+  </div>
+</body>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Adres Bilgileri</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="padding-right: 55px">
+    <div *ngIf="adres1 == true && maTtotal > 0" class="signup-form">
+      <form [formGroup]="addressForm">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="firstName"><i class="mdi mdi-account"></i></label>
+              <input
+                type="text"
+                id="firstName"
+                placeholder="Adınız"
+                formControlName="firstName"
+              />
+            </div>
+            <div class="col-md-6 rightlabel">
+              <i class="mdi mdi-account"></i>
+              <input
+                type="text"
+                id="lastName"
+                placeholder="Soy Adınız"
+                formControlName="lastName"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="phoneNumber"
+                ><i class="mdi mdi-chevron-double-right"></i
+              ></label>
+              <input
+                type="text"
+                id="phoneNumber"
+                placeholder="Telefon Numarası"
+                formControlName="phoneNumber"
+              />
+            </div>
+            <div class="col-md-6 rightlabel">
+              <i class="mdi mdi-chevron-double-right"></i>
+              <input
+                type="text"
+                id="street"
+                placeholder="Sokak"
+                formControlName="street"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="adresshead"
+            ><i class="mdi mdi-chevron-double-right"></i
+          ></label>
+          <input
+            type="email"
+            id="floatingInput"
+            placeholder="Adres Başlığı"
+            formControlName="addressHead"
+          />
+        </div>
+        <div class="form-group">
+          <label for="addressDetail"
+            ><i class="mdi mdi-chevron-double-right"></i
+          ></label>
+          <input
+            type="text"
+            id="addressDetail"
+            placeholder="Açık Adres"
+            formControlName="addressDetail"
+          />
+        </div>
+      </form>
+      <div class="form-group form-button">
+        <input
+          (click)="AddressControl()"
+          type="submit"
+          name="signup"
+          id="signup"
+          class="form-submit"
+          value="Kaydet Ve Devam Et"
+        />
+      </div>
+    </div>
+  </div>
+</ng-template>

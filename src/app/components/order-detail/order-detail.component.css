@@ -1,0 +1,173 @@
+.order-detail{
+    margin-top: 20px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #e2e2e2;    
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+.order-detail-text{
+    width: 25%;
+    float: left;
+    font-weight: bold;
+}
+
+.order-hold{
+    width: 18%;
+    float: left;
+}
+
+.order-date{
+    width: 18%;
+    float: left;
+}
+
+.order-no{
+    width: 18%;
+    float: left;    
+}
+
+.order-amount{
+    width: 18%;
+    float: left;
+}
+
+.header{
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    height: 75px;
+    border: 1px solid #e6e6e6;
+    background-color: #fafafa;
+    border-radius: 6px 6px 0px 0px;
+}
+.content{
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    padding: 20px;
+}
+.seller{
+    background-color: #fafafa;
+    margin-bottom: 10px;
+    height: 40px;
+    display: flex;
+    box-sizing: border-box;
+    padding-left: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.seller-text{
+    display: flex;
+    align-items: center;
+}
+
+.seller-db{
+    margin-left: 5px;
+}
+
+.orderDate{
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.product{
+    width: 49%;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 5%);
+    color: #333333;
+    border-radius: 6px;
+    border: solid 1px #e6e6e6;
+    background-color: #ffffff;
+    height: 150px;
+    margin-top: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.product-content{
+    width: 100%;
+}
+
+.product-img{
+    padding: 3px;
+    border: 1px solid #e6e6e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    width: 80px;
+    height: 100px;
+}
+
+img{
+    max-width: 76px;
+    max-height: 98px;
+    cursor: pointer;
+}
+
+.product-info{
+    display: block;
+    float: right;
+    width: 80%;
+    height: 100px;
+}
+
+.product-header{
+    height: 35%;
+}
+
+.product-price{
+    color: #f27a1a;
+    font-size: 14px;
+    font-weight: 600;
+    height: 30%;
+    margin-top: 10px;
+}
+
+.product-button input{
+    font-size: 14px;
+    width: 150px;
+    border-radius: 6px;
+    background: 0 0;
+    border-color: #f27a1a;
+    border: 1px solid #f27a1a;
+    color: #f27a1a;
+    padding: 5px;
+}
+
+.product-button input:hover{
+    background-color: coral;
+    color: white;
+    transition: 00.6s;
+}
+
+.header .kargo{
+    float: left;
+    border-right: 1px solid gray;
+    padding: 2px 20px;
+}
+
+.kargo-firmasi{
+    float: left;
+    padding: 2px 20px;
+}
+.dsc-span{
+    width: 100%;
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+

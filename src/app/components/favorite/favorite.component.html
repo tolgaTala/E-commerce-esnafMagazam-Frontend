@@ -1,0 +1,99 @@
+<head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="CartContainer">
+      <div class="Header">
+        <h3 class="Heading">Favorilerim ({{favorites.length}})</h3>
+        <h5 (click)="deleteAllFavorite()" class="Action">Favorilerimi Boşalt</h5>
+      </div>
+      <div *ngIf="favorites.length == 0" class="Cart-empty">
+        <div style="margin-top: 20px">
+          <i class="mdi mdi-heart-outline"></i>
+          Favorilerinizde ürün bulunmamaktadır.
+          <div
+            *ngIf="favorites.length == 0"
+            class="checkout"
+            style="float: right; margin-top: 37px"
+          >
+            <button routerLink="/products" class="button">
+              Alışverişe Başla
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div *ngIf="favorites.length != 0" class="Cart-Items">
+          <div>
+            <div class="row">
+              <div *ngFor="let product of productsdto" class="col-md-3">
+                <div class="wsk-cp-product">
+                  <div class="favori">
+                    <a (click)="removeFavorite(product.productId)"
+                      ><i class="mdi mdi-close"></i
+                    ></a>
+                  </div>
+                  <div
+                    routerLink="/productdetails/{{ product.productId }}"
+                    class="wsk-cp-img"
+                  >                  
+                    <img
+                    src="https://localhost:44312/uploads/{{product.imagePath}}"
+                      alt="Product"
+                      class="img-responsive"
+                    />
+                  </div>
+                  <div class="wsk-cp-text">
+                    <div
+                      routerLink="/productdetails/{{ product.productId }}"
+                      class="category"
+                    >
+                      <span>{{ product.productName | uppercase }}</span>
+                    </div>
+                    <div
+                      routerLink="/productdetails/{{ product.productId }}"
+                      class="title-product"
+                    >
+                      <p>{{ product.userCompany }}</p>
+                    </div>
+                    <div
+                      routerLink="/productdetails/{{ product.productId }}"
+                      class="description-prod"
+                    >
+                      <p>
+                        {{ product.productDescription }}
+                      </p>
+                    </div>
+                    <div class="card-footer">
+                      <div class="wcf-left">
+                        <span class="price"
+                          >Fiyat: {{ product.price
+                          }}<i
+                            style="font-weight: bold"
+                            class="mdi mdi-currency-try"
+                          ></i
+                        ></span>
+                      </div>
+                      <div class="wcf-right">
+                        <a
+                          routerLink="/products"
+                          (click)="
+                            addToBasket(product.productId, product.productName)
+                          "
+                          class="buy-btn"
+                          ><i style="font-size: 30px" class="mdi mdi-shopping"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>

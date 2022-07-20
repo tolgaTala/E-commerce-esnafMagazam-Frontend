@@ -1,0 +1,88 @@
+.profile{
+    margin-top: 20px;
+}
+
+.profileForm{
+    margin-top: 15px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+}
+.ProfileInfo{
+    padding: 20px;
+    width: 50%;
+    border-right:1px solid black ;
+}
+.changePassword{
+    padding: 20px;
+    width: 50%;
+}
+      /* ************ */
+
+.header{
+    border-radius: 10px;
+    border: 1px solid black;
+    height: 60px;
+    text-align: center;
+    padding-top: 15px;
+}
+.headerP{
+    float: left;
+    margin-left: 20px;
+}
+.deleteUser{
+    color: #e72734;
+    float: right;
+    margin-right: 25px;
+    cursor: pointer;
+}
+.deleteUser:hover{
+    text-shadow: 2px 2px 8px rgb(58, 56, 56);
+    font-size: 17px;
+    transition: 0.3s;
+}
+.info{
+    color: coral;
+}
+.name{ 
+    display: flex;
+}
+.form-group-surname{
+    width: 50%;
+    margin-left:10px;
+}
+.form-group-name{
+    width: 50%;
+}
+.form-group-email{
+    margin-top: 10px;
+}
+.form-group-phone{
+    margin-top: 10px;
+}
+.save{
+    margin-top: 25px;
+}
+.btn-outline-warning{
+    width: 100%;
+    color: coral;
+    border: 1px solid coral;
+    height: 50px;
+    border-radius: 10px;
+}
+.btn-outline-warning:hover{
+    color: white;
+    background-color: coral;
+}
+.uptadePassword{
+    color: coral;
+}
+.form-group-oldPassword{
+    margin-top: 10px;
+}
+.form-group-newPassword1{
+    margin-top: 10px;
+}
+.form-group-newPassword2{
+    margin-top: 10px;
+}

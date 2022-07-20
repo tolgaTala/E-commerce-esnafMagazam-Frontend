@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'material-icons/iconfont/material-icons.css';
+@import '~@mdi/font/css/materialdesignicons.css';
+
+input.star:checked ~ label.star:before {
+    color: #FFC000 !important;
+  }
+  
+  label.star:before {
+    font-size: 18px;
+    padding-left: -60px !important;
+    padding-left: -60px !important;
+    text-align: left;
+  }
+  
+  div.stars {
+    padding-left: -60px !important;
+    padding-left: -60px !important;
+    text-align: left;
+  }
+  
+  .denem{
+    margin-bottom: 40px;
+  }
+  .p-rating .p-rating-icon.pi-star-fill {
+    color: #FFC000 !important;
+}
+

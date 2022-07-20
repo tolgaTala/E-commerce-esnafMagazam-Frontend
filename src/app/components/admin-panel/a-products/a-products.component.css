@@ -1,0 +1,27 @@
+.product-img{
+    width: 42px;
+    align-items: center;
+    height: 70px;
+    display: flex; 
+    border: 1px solid #e2e2e2;
+    cursor: pointer;
+}
+img{
+    max-width: 30px; max-height: 50px; padding: 2px; border-radius: 2px; justify-content: center;align-items: center; display: flex;
+}
+.table-head{
+    display: flex;
+    justify-content: space-between;
+}
+.p-button-success{
+    margin-right: 10px;
+}
+
+.product-popup-cntnt,.denem{
+    margin-top: 15px !important;
+    background-color: red;
+}
+
+.popup-content{
+    margin-top: 30px;
+}

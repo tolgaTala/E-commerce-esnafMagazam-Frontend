@@ -1,0 +1,36 @@
+<br><br>
+<p-carousel [value]="productsDto" styleClass="custom-carousel" [numVisible]="5" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+    <ng-template pTemplate="header">
+        <h5>En Favoriler</h5>
+    </ng-template>
+    <ng-template let-product pTemplate="gridItem">        
+        <div class="product-cntnt">
+            <div class="p-col-12 p-md-4">
+                <div class="product-grid-item card">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"></i>
+                            <span class="product-category">{{product.categoryName}}</span>
+                        </div>
+                        <span>{{product.likeNumber}}</span>
+                    </div>
+                    <div class="p-mb-3 div-img">                           
+                        <div class="img-byt">
+                        <img src="https://localhost:44312/uploads/{{product.imagePath}}" alt="Product" class="product-image" />
+                        </div>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <div class="product-name"><b>{{product.productName}}</b></div>
+                        <div class="product-description">{{product.productDescription}}</div>
+                        <p-rating [ngModel]="product.starRating" [readonly]="true" [cancel]="false"></p-rating>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <span class="product-price">{{product.price}}₺</span>
+                        <p-button class="card-button" icon="pi pi-shopping-cart"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>
+

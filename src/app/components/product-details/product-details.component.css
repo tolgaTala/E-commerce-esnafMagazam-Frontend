@@ -1,0 +1,509 @@
+.CartContainer {
+  padding: 25px 25px;
+  width: 80%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  box-shadow: 0px 10px 20px #1687d933;
+}
+a{
+  text-decoration: none;
+}
+.image {
+  width: 40%;
+  margin-right: 20px;;
+  box-shadow: 0px 2px 15px gray;
+}
+.image img {
+  width: 400px;
+  height: 500px;
+}
+.details {
+  padding: 25px 25px;
+  width: 69%;
+  height: 450px;
+  background-color: #ffffff;
+}
+.details h4,
+h5,
+.degerlendirme {
+  display: inline;
+}
+.details h5 {
+  font-weight: 470;
+}
+.details i {
+  font-size: 20px;
+  display: inline;
+}
+.price {
+  margin-top: 17px;
+  color: coral;
+}
+.btn-success {
+  width: 79%;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 23px;
+  font-weight: 500;
+  height: 50px;
+  border: none;
+  background-color: coral;
+  margin-top: -15px;
+}
+.btn-success:hover {
+  background-color: chocolate;
+  transition: 1s;
+}
+.favori {
+  cursor: pointer;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 8px;
+  text-align: center;
+  width: 55px;
+  height: 50px;
+  margin-left: 24px;
+  box-shadow: 0px 5px 10px #1687d933;
+  display: inline-block;
+}
+.favori:hover{
+  background: rgb(238, 235, 234);
+  transition: 1s;
+}
+.favoriActive{
+  border: 1px solid rgb(172, 162, 162);
+  border-radius: 8px;
+  text-align: center;
+  width: 55px;
+  height: 50px;
+  margin-left: 24px;
+  background: coral;
+  box-shadow: 0px 5px 10px #1687d933;
+  display: inline-block;
+}
+.favoriActive:hover{
+  background: rgb(216, 96, 56);
+  transition: 1s;
+}
+.favoriActive i{
+  color: #ffffff;
+  font-size: xx-large;
+}
+.favori i {
+  color: gray;
+  font-size: xx-large;
+}
+.favori i:hover{
+    color: coral;
+    transition: 0.3s;
+}
+.favorıSub{
+    margin-top: 4px;    
+}
+.favorıSub i{
+    color: rgb(10, 180, 10);
+    font-size: medium; 
+}
+.favorıSub p{
+    font-size: medium;
+    color: rgb(165, 159, 159);
+    float: right;
+    margin-right: 13px;
+    display: block;
+}
+.favorıSub p i{
+    color: rgb(165, 159, 159);
+}
+
+
+/* yorumlar */
+.CartContainerYorum {
+  padding: 25px 25px;
+  width: 80%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px #1687d933;  
+  margin-bottom: 40px;
+}
+.Comments{    
+  width: 100%;
+  margin-bottom: -20px;
+  border-bottom: 1px solid #1687d933;
+}
+.CommentsHeading{
+  margin-top: 20px;
+  margin-left: 20px;
+  color: slategrey;
+}
+.stars{
+  font-size: 30px;
+  margin-left: 20px;
+  margin-top: 6px;
+}
+.skor-ort{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.skor-and-star{
+  display: flex;
+  flex-direction: row;
+  
+}
+.skor-and-star label{
+  margin-right: 10px;
+}
+.Comment{
+  font-size: large;
+  margin-left: 20px;  
+  border-bottom: 1px solid #1687d933;
+}
+.CommentContent{
+  margin-top: 9px;
+  margin-bottom: 10px;
+  display: inline-flex;
+}
+.ContentReal{
+  margin-left: 10px;
+}
+.degerlendirme{
+  color: rgb(87, 84, 84);
+  font-size: large;
+}
+.ContentSub{
+  margin-top: -3px;
+  display: flex;
+}
+.kullaniciAdi{
+  color: rgb(139, 134, 134);
+  margin-right:10px;
+  margin-top: 3px;
+  font-size: small;
+  text-align: center;
+}
+.yorumTarihi{
+  margin:3px 10px ;
+  font-size: small;
+  color: rgb(85, 84, 84);
+}
+.satici{
+  margin:0 10px ;
+  font-size: small;
+  color: rgb(85, 84, 84);
+}
+
+.commentCart{
+  margin-top: 10px;
+  padding: 25px 30px;
+  width: 80%;
+  height: 250px;
+  border: 1px solid #1687d933;  
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px #1687d933;
+  margin-bottom: 40px;
+}
+.commentText{
+  display: block;
+  width: 50%;
+  float: left;
+}
+.commentText textarea{
+    display:inline-block;
+    width: 100%;
+    height: 130px;
+    border-radius: 10px;  
+    padding: 10px; 
+    box-shadow: 0px 10px 20px #1687d933;
+    
+}
+
+.star-and-button{
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
+.star-rating{
+  display: block;
+  width: 100%;
+  height: 110px;
+  text-align: center;
+}
+
+.commentButton{
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+}
+
+.commentButton input{
+  border: 1px solid coral;
+  color: white;
+  border-radius: 5px;
+
+}
+
+.commentButton input:hover{
+  transition: 00.6s;
+  opacity: 0.9;
+}
+
+
+
+
+
+
+.question-cart{
+  width: 80%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px #1687d933;
+  padding: 25px 25px;
+}
+.product-info{
+  width: 100%;
+  height: 80px;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  border-top:1px solid #e2e2e2;
+  border-bottom:1px solid #e2e2e2;
+  border-radius: 6px;
+}
+.ortalama{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-info1{
+  display: flex;
+  align-items: center;
+}
+.product-img{
+  width: 30px;
+  height: 48px;
+  margin-left: 10px;
+}
+.product-img img{
+  width: 32px;
+  height: 48px;
+  margin-right: 8px;
+}
+.product-name{
+  padding: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-description{
+  padding: 5px;
+  font-size: 18px;
+  color: #333;
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+}
+.product-seller{
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+.product-seller span{
+  margin-left: 10px;
+  font-weight: bold;
+}
+.question{
+  width: 80%;
+  padding: 6px;
+  margin-top: 15px;
+}
+.question span{
+  font-weight: bold;
+}
+.answer{
+  padding: 10px 10px 10px 20px;  
+  background-color: #FAFAFA;
+  width: 100%;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+.answer span{
+  font-weight: bold;
+
+}
+.seller-name{
+  float: left;
+  margin: 5px 0px;
+
+}
+.answer-date{
+  float: left;
+  margin: 5px 10px;
+}
+
+.seller-answer{
+  padding: 10px;
+  display: flex;
+  justify-content: left;
+  align-items: flex-end;
+  width: 100%;
+}
+
+
+.popup-button{
+  background-color:#fbfbfb;
+  border-top: solid 1px #e8e8e8;
+  padding: 15px;
+}
+
+.modal-body{
+  padding: 0px;
+}
+
+.ask-answer-cart{
+  padding: 1rem;
+}
+
+.popup-button:hover{
+
+  transition: 00.6s;
+}
+
+.question-date{
+  font-size: 15px;
+}
+
+#exampleFormControlTextarea1{
+    resize: none;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+}
+
+.question-popup-seller{
+    padding: 20px;
+    border-bottom: solid 1px #e8e8e8;    
+    background-color:#fbfbfb;
+    color: #4d8ee1;    
+}
+
+.question-popup-seller p{
+  cursor: pointer;   
+}
+
+
+
+
+
+.popup-comment{
+  padding: 20px;
+}
+.product-popup-img{
+  display: block;
+  float: left;
+}
+.product-popup-img img{
+  border: 1px solid #e6e6e6;
+  display: block;
+  width: 71px;
+  height: 115px;
+  padding: 1px;
+}
+.product-popup-details{
+  width: 70%;
+  float: left;
+  margin-left: 10px;
+  padding: 2px;
+
+}
+.product-popup-name{
+  font-weight: bold;
+  font-size: 16px;
+}
+.product-popup-description{
+  overflow: hidden; /* taşacak kısımları gizle. */
+  white-space: nowrap; /* alt satırı gösterme, alt satıra inme. */
+  text-overflow: ellipsis; /* uzunsa sonuna üç nokta koy. */ 
+  color: #666666;
+  font-size: 13px;
+}
+
+.mdi-star{
+  color:#FFC000;
+}
+
+.cont{
+  width: 65%;
+  padding-left: 0px;
+  margin-left: -30px;
+  margin-top: -26px;
+}
+.puan-p{
+    color: #f27a1a;
+    font-size: 14px;
+    font-family: source_sans_proregular;
+    font-weight: 600;
+}
+.commnet-textarea input{
+  width: 100%;
+  border: solid 1px #e5e5e5;
+  border-radius: 3px;
+  background-color: #fbfbfb;
+  box-sizing: border-box;
+  color: #666666;
+}
+.commnet-textarea textarea{
+  width: 100%;
+  margin:10px 0px;
+  padding: 10px;
+  resize: none;
+  border: solid 1px #e5e5e5;
+  border-radius: 3px;
+  background-color: #fbfbfb;
+  box-sizing: border-box;
+  color: #666666;
+  height: 100px;
+}
+.commet-textarea p{
+    font-size: 14px;
+    color: #333333;
+    
+}
+
+.comment-popup-button{
+    background: #f27a1a;
+    border-color: #f27a1a;
+    color: #fff;
+    padding: 9px 12px;
+    font-size: 14px;
+    line-height: 18px;
+    width: 100%;
+    border: solid 1px #e6e6e6;
+    border-radius: 3px;
+    transition: all .2s ease;
+}
+
+.comment-popup-button:hover{
+  background: #f78b33;
+  transition: all .2s ease;
+}
+.mdi-store{
+  color: coral; 
+  font-size: large; 
+  border-radius: 50%; 
+  border: 1px solid coral; 
+  padding: 4px;
+  margin-right: 4px;
+}
+.seller-anwr{
+  padding: 32px;
+  font-weight: 100 !important;
+}

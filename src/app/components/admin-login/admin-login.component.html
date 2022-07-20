@@ -1,0 +1,22 @@
+<div class="login-container">
+    <div class="login-content">
+        <div class="login-logo">
+            <img class="logo-img" alt="logo" src="https://localhost:44312/uploads/images/0b92edf26c4247a1a26adb866290e8ab.JPG">
+        </div>
+        <div class="login-input">
+            <form [formGroup]="loginForm">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input formControlName="email" id="email" type="text" pInputText placeholder="Kullanıcı Adı">         
+                </div>
+                <div class="p-inputgroup password-text">
+                    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                    <input formControlName="password" id="password" type="password" pInputText placeholder="Şifre">         
+                </div>
+                <div class="login-button">
+                    <button (click)="login()" pButton type="button" label="OTURUM AÇ" ></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="order-detail" *ngIf="order">
+            <div class="order-detail-text">
+                <div class="orderText">
+                    Sipariş Detayı
+                </div>
+            </div>
+            <div class="order-hold">
+                <div class="orderText">
+                    Sipariş Sahibi
+                </div>
+                <div class="order-hold-db">
+                    {{order.firstName}}
+                </div>
+            </div>
+            <div class="order-date">
+                <div class="orderText">
+                    Sipariş Tarihi
+                </div>
+                <div class="order-date-db">
+                    {{order.orderDate | date:'dd-MM-yyyy HH:mm'}}
+                </div>
+            </div>
+            <div class="order-no">
+                <div class="orderText">
+                    Sipariş Numarası
+                </div>
+                <div class="order-no-db">
+                    {{order.orderId}}
+                </div>
+            </div>
+            <div class="order-amount">
+                <div class="orderText">
+                    Tutar
+                </div>
+                <div class="order-amount-db">
+                    {{order.amount}} TL
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="order-detail-content" *ngFor="let orderd of ordersDto">
+            <div class="header">
+                <label style="border-radius: 50%; border : 1px solid gray;padding:3px 12px;float: left;" ><i style="color: coral; font-size: xx-large;" class="mdi mdi-dropbox"></i></label>
+                <div class="kargo">
+                    <div class="kargo-Text">Kargo No</div>
+                    <div class="kargo-Db">{{orderd.orderId}}</div>
+                </div>
+                <div class="kargo-firmasi">
+                    <div class="kargo-firma-text">Kargo Firması</div>
+                    <div class="kargo-firma-db">{{orderd.companyName}}</div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="orderState">
+                    <label *ngIf="orderd.status"><i style="color: #16be48; font-size: medium;" class="mdi mdi-checkbox-marked-circle">Teslim Edildi</i></label>
+                    <label *ngIf="!orderd.status"><i style="color: coral; font-size: medium;" class="mdi mdi-checkbox-marked-circle">Hazırlanıyor</i></label>
+                </div>
+                <div class="orderDate">
+                    <span>Ürün {{order.orderDate | date:'dd-MM-yyyy HH:mm'}} tarihinde sipariş verilmiştir</span>
+                </div>
+                <div class="product">
+                    <div class="product-content">
+                        <div class="product-img">
+                            <img src="https://localhost:44312/uploads/{{orderd.productImage}}" routerLink="/productdetails/{{orderd.productId}}"/>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-header">                                
+                                <span style="font-weight: bold;">{{orderd.productName}}  </span>
+                                <label class="dsc-span">{{orderd.productDescription}}</label>
+                            </div>
+                            <div class="product-price">
+                                <span>Ara Toplam: {{orderd.price}} TL</span>
+                            </div>
+                            <div class="product-button">
+                                <input type="submit" value="Ürünü Değerlendir" routerLink="/productdetails/{{orderd.productId}}"/>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

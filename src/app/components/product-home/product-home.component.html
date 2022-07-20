@@ -1,0 +1,136 @@
+<!-- <p-galleria [value]="productsDtoNew" [responsiveOptions]="responsiveOptionsGalleria" [containerStyle]="{'max-width': '640px'}" [numVisible]="5"> 
+    <ng-template pTemplate="item" let-item>
+        <img src="https://localhost:44312/uploads/{{item.imagePath}}" style="width: 100%; display: block;" />
+    </ng-template>
+    <ng-template pTemplate="thumbnail" let-item>
+        <div class="grid grid-nogutter justify-content-center">
+            <img src="https://localhost:44312/uploads/{{item.imagePath}}" style="display: block;" />
+        </div>
+    </ng-template>
+    <ng-template pTemplate="caption" let-item>
+        <h4 style="margin-bottom: .5rem; color: #ffffff;">title</h4>
+    </ng-template>
+</p-galleria> -->
+
+<br>
+<p-carousel [value]="productsDtoNew" styleClass="custom-carousel" [numVisible]="5" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+    <ng-template pTemplate="header">
+        <h5>En Yeniler</h5>
+    </ng-template>
+    <ng-template let-product pTemplate="gridItem">        
+        <div class="product-cntnt">
+            <div class="p-col-12 p-md-4">
+                <div class="product-grid-item card">
+                    <div class="product-grid-item-top">
+                        <div *ngIf="!favorideVarmi(product.productId)" class="favori">
+                            <a (click)="addToFavorite(product.productId)"><i class="mdi mdi-heart-outline"></i></a>
+                        </div>
+                        <div *ngIf="favorideVarmi(product.productId)" class="favoriActive">
+                            <a (click)="deleteToFavorite(product.productId)"><i class="mdi mdi-heart-outline"></i></a>
+                          </div>
+                        <div>
+                            <i class="pi pi-tag product-category-icon"></i>
+                            <span class="product-category">{{product.categoryName}}</span>
+                        </div>
+                        <span>{{product.unitInStock}}</span>
+                    </div>
+                    <div class="p-mb-3 div-img" routerLink="/productdetails/{{ product.productId }}">                           
+                        <div class="img-byt">
+                        <img src="https://localhost:44312/uploads/{{product.imagePath}}" alt="Product" class="product-image" />
+                        </div>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <div class="product-name"><b>{{product.productName}}</b></div>
+                        <div class="product-description">{{product.productDescription}}</div>
+                        <p-rating [ngStyle]="{color:'var(--yellow-500)'}" class="star" [ngModel]="product.starRating" [readonly]="true" [cancel]="false"></p-rating>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <span class="product-price">{{product.price}}₺</span>
+                        <div class="wcf-right"><a (click)="addToBasket(product.productId)" class="buy-btn"><i style="font-size:30px;" class="mdi mdi-shopping"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>
+
+
+<!-- <app-home-slider-fav [productsDto]="productsDto"></app-home-slider-fav> -->
+
+
+<br><br>
+<p-carousel [value]="productsDtoFav" styleClass="custom-carousel" [numVisible]="5" [numScroll]="3" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+    <ng-template pTemplate="header">
+        <h5>En Favoriler</h5>
+    </ng-template>
+    <ng-template let-product pTemplate="gridItem">        
+        <div class="product-cntnt">
+            <div class="p-col-12 p-md-4">
+                <div class="product-grid-item card">
+                    <div class="product-grid-item-top">
+                        <div *ngIf="!favorideVarmi(product.productId)" class="favori">
+                            <a (click)="addToFavorite(product.productId)"><i class="mdi mdi-heart-outline"></i></a>
+                          </div>
+                        <div>
+                        <div *ngIf="favorideVarmi(product.productId)" class="favoriActive">
+                                <a (click)="deleteToFavorite(product.productId)"><i class="mdi mdi-heart-outline"></i></a>
+                        </div>
+                            <i class="pi pi-tag product-category-icon"></i>
+                            <span class="product-category">{{product.categoryName}}</span>
+                        </div>
+                        <span>{{product.likeNumber}}</span>
+                    </div>
+                    <div class="p-mb-3 div-img" routerLink="/productdetails/{{ product.productId }}">                           
+                        <div class="img-byt">
+                        <img src="https://localhost:44312/uploads/{{product.imagePath}}" alt="Product" class="product-image" />
+                        </div>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <div class="product-name"><b>{{product.productName}}</b></div>
+                        <div class="product-description">{{product.productDescription}}</div>
+                        <p-rating [ngModel]="product.starRating" [readonly]="true" [cancel]="false"></p-rating>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <span class="product-price">{{product.price}}₺</span>
+                        <div class="wcf-right"><a (click)="addToBasket(product.productId)" class="buy-btn"><i style="font-size:30px;" class="mdi mdi-shopping"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>
+
+
+<div class="row product-wrap">
+    <div class="col-md-12 product-cntnt" *ngFor="let product of productsDto">
+        <div class="product-grid-item card">
+            <div class="product-grid-item-top">
+                <div *ngIf="!favorideVarmi(product.productId)" class="favori">
+                    <a (click)="addToFavorite(product.productId)"><i class="mdi mdi-heart-outline"></i></a>
+                  </div>
+                <div>
+                <div *ngIf="favorideVarmi(product.productId)" class="favoriActive">
+                        <a (click)="deleteToFavorite(product.productId)"><i class="mdi mdi-heart-outline"></i></a>
+                </div>
+                    <i class="pi pi-tag product-category-icon"></i>
+                    <span class="product-category">{{product.categoryName}}</span>
+                </div>
+                <span>{{product.likeNumber}}</span>
+            </div>
+            <div class="p-mb-3 div-img" routerLink="/productdetails/{{ product.productId }}">                           
+                <div class="img-byt">
+                <img src="https://localhost:44312/uploads/{{product.imagePath}}" alt="Product" class="product-image" />
+                </div>
+            </div>
+            <div class="product-grid-item-content">
+                <div class="product-name"><b>{{product.productName}}</b></div>
+                <div class="product-description">{{product.productDescription}}</div>
+                <p-rating [ngModel]="product.starRating" [readonly]="true" [cancel]="false"></p-rating>
+            </div>
+            <div class="product-grid-item-bottom">
+                <span class="product-price">{{product.price}}₺</span>
+                <div class="wcf-right"><a (click)="addToBasket(product.productId)" class="buy-btn"><i style="font-size:30px;" class="mdi mdi-shopping"></i></a></div>
+            </div>
+        </div>
+    </div>
+</div>

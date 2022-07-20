@@ -1,0 +1,82 @@
+<p-confirmDialog [style]="{width: '60vw'}"></p-confirmDialog>
+<div class="card" *ngIf="customers.length>0">
+    <p-table #dt [value]="customers" dataKey="userId" sortMode="multiple" selectionMode="multiple" [(selection)]="selectedcustomers"
+    [rows]="6" [showCurrentPageReport]="true" [selectionPageOnly]="true" styleClass="p-mt-5"
+    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['userName','email','lastName']">
+        <ng-template pTemplate="caption">
+            <div class="table-head">
+                <div class="flex table-left">
+                    <span class="p-input-icon-left ml-auto">                    
+                        <i class="pi pi-search"></i>                    
+                        <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Arama Yap" />
+                    </span>
+                </div>
+                <div class="table-right">
+                    <button (click)="hiddenProducts()" pButton pRipple label="Kullanıcı Sil" icon="pi pi-trash" class="p-button-danger" [disabled]="!selectedcustomers || !selectedcustomers.length"></button>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="userId">#Id<p-sortIcon field="userId"></p-sortIcon></th>
+                <th>Ad</th>            
+                <th>Soyad</th>            
+                <th>E-mail</th>
+                <th>Telefon No</th>
+                <th pSortableColumn="status">Durum<p-sortIcon field="status"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="customer"></p-tableCheckbox>
+                </td>
+                <td>{{customer.userId}}</td>
+                <td>{{customer.firstName}}</td>
+                <td>{{customer.lastName}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.phoneNumber}}</td>                  
+                <td>{{customer.status}}</td>                  
+                <td>
+                    <button (click)="openModal(template1,customer)" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" ></button>
+                </td>     
+            </tr>
+        </ng-template>        
+    </p-table>
+</div>
+
+
+
+
+<ng-template #template1>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Kullanıcıyı Güncelle</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body popup-comment">
+      <div>
+        <form [formGroup]="userUpdateForm">
+          <div class="product-popup-img" *ngIf="userUpdateForm">
+            <label>Ad</label>
+            <input id="firstName" formControlName="firstName" class="form-control" type="text"  /><br>
+            <label>Soyad</label>
+            <input id="LastName" formControlName="LastName"  class="form-control"/><br>
+            <label>E-Mail</label>
+            <input id="email" formControlName="email"  class="form-control" type="text"/><br>
+            <label>Telefon Numarası</label>
+            <input id="phoneNumber" formControlName="phoneNumber"  class="form-control" type="text"/><br>
+            <!-- <label>Parola</label>
+            <input id="unitInStock" formControlName="unitInStock"  class="form-control" type="text"/><br> -->
+          </div>
+          <button (click)="updateUserInfo()" pButton pRipple class="p-button-success mr-2">Kaydet</button>         
+        </form>      
+      </div>
+    </div>
+  </ng-template>

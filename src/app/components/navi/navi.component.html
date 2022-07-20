@@ -1,0 +1,62 @@
+<nav class="navbar1">
+  <div class="nav1">
+    <img routerLink="home" src="https://localhost:44312/uploads/images/0b92edf26c4247a1a26adb866290e8ab.JPG" alt="logo" class="brand-logo" alt="" />
+    <div class="nav-items1">
+      <div class="search">
+        <input
+          (keyup)="onKey($event)"
+          type="text"
+          class="search-box"
+          placeholder="arama"
+        />
+        <button (click)="search()" routerLink="products" class="search-btn">
+          <i class="mdi mdi-account-search"></i>
+        </button>
+      </div>
+      <div class="account">
+        <a routerLink="basket"><i class="mdi mdi-cart-outline"></i> Sepetim</a>
+        <input class="girisbtn" type="checkbox" id="btn" />
+        <ul *ngIf="!isAuthantice" [style]="letnone()" class="menu1">
+          <li (click)="login()" class="giris">Giriş Yap</li>
+          <li (click)="register()">Kayıt Ol</li>
+        </ul>
+        <ul *ngIf="isAuthantice" [style]="letnone()" class="menu2">
+          <li style="color: coral; font-size: 15px">{{ userMail }}</li>
+          <li routerLink="/hesabim/profil"><i class="mdi mdi-account"></i> Profilim</li>
+          <li *ngIf="!esnaf" routerLink="/hesabim/siparislerim">
+            <i class="mdi mdi-cube-outline"></i> Siparişlerim
+          </li>
+          <li *ngIf="esnaf" (click)="magaza()">
+            <i class="mdi mdi-cube-outline"></i> Mağazam
+          </li>
+          <li (click)="logOut()"><i class="mdi mdi-logout"></i> Çıkış Yap</li>
+        </ul>
+        <a routerLink="favorites"><i class="mdi mdi-heart-outline"></i> Favorilerim</a>
+        <a style="cursor: pointer;" *ngIf="!isAuthantice"
+          ><i class="mdi mdi-account"></i><label style="cursor: pointer;" for="btn"> Giriş Yap</label></a
+        >
+        <a style="cursor: pointer;" *ngIf="isAuthantice"
+          ><i style="cursor: pointer;" class="mdi mdi-account"></i><label style="cursor: pointer;" for="btn"> Hesabım</label></a
+        >
+      </div>
+    </div>
+  </div>
+  <ul class="links-container">
+    <li
+      (click)="setCurrentCategory(category)"
+      routerLink="/products/category/{{ category.categoryID }}"
+      *ngFor="let category of categories"
+      class="link-item"
+    >
+      <a class="link">{{ category.categoryName }}</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container">    
+  <div class="row">     
+      <div class="col-md-12">            
+          <router-outlet></router-outlet>            
+      </div>        
+  </div>    
+</div>

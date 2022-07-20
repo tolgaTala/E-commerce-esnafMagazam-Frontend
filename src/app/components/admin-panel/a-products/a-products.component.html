@@ -1,0 +1,151 @@
+<p-confirmDialog [style]="{width: '60vw'}"></p-confirmDialog>
+<div class="card">
+    <p-table #dt [value]="products" dataKey="productId" sortMode="multiple" selectionMode="multiple" [(selection)]="selectedProducts"
+    [rows]="6" [showCurrentPageReport]="true" [selectionPageOnly]="true" styleClass="p-mt-5" [loading]="loading"
+    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['productName','categoryName']">
+        <ng-template pTemplate="caption">
+            <div class="table-head">
+                <div class="flex table-left">
+                    <span class="p-input-icon-left ml-auto">                    
+                        <i class="pi pi-search"></i>                    
+                        <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Arama Yap" />
+                    </span>
+                </div>
+                <div class="table-right">
+                    <button pButton pRipple label="Ürün Ekle" icon="pi pi-plus" class="p-button-success mr-2" (click)="openModal2(template1)"></button>
+                    <button pButton pRipple label="Ürün Sil" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="productId">#Id<p-sortIcon field="productId"></p-sortIcon></th>
+                <th pSortableColumn="productName">Ürün Adı<p-sortIcon field="productName"></p-sortIcon></th>
+                <th >Image</th>
+                <th pSortableColumn="price">Price<p-sortIcon field="price"></p-sortIcon></th>
+                <th>Category</th>            
+                <th>Şirket</th>
+                <th pSortableColumn="unitInStock">Stok Adedi<p-sortIcon field="unitInStock"></p-sortIcon></th>
+                <th pSortableColumn="likeNumber">Favori<p-sortIcon field="likeNumber"></p-sortIcon></th>
+                <th pSortableColumn="status">Durum<p-sortIcon field="status"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                </td>
+                <td>{{product.productId}}</td>
+                <td>{{product.productName}}</td>
+                <td><img src="https://localhost:44312/uploads/{{product.imagePath}}" [alt]="product.name" width="100" class="shadow-4" /></td>
+                <td>{{product.price}} ₺</td>
+                <td>{{product.categoryName}}</td>
+                <td>{{product.userCompany}}</td>
+                <td>{{product.unitInStock}}</td>
+                <td>{{product.likeNumber}}</td>                
+                <td>{{product.status}}</td>   
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="openModal(template2,product)"></button>
+                </td>     
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<ng-template #template1>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef2?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body popup-comment">
+      <div>
+        <form [formGroup]="productAddForm">
+          <div class="product-popup-img" *ngIf="productAddForm">
+            <label>Ürün Adı</label>
+            <input id="productName" formControlName="productName" class="form-control" type="text"  />
+            <label>Ürün Açıklaması</label>
+            <textarea id="productDescription" formControlName="productDescription"  class="form-control"></textarea>
+            <label>Kategori Adı</label>
+            <select id="categoryId" name="categoryId" formControlName="categoryId"  class="form-control">
+              <option *ngFor="let category of categories"  value="{{category.categoryID}}">
+                {{category.categoryName}}
+              </option>
+            </select>
+            <label>Fiyat</label>
+            <input id="price" formControlName="price"  class="form-control" type="text"/>
+            <label>Stok Adedi</label>
+            <input id="unitInStock" formControlName="unitInStock"  class="form-control" type="text"/><br>
+            <label>Eklemek istediğiniz resmi seçiniz</label>
+            <div class="form-group">
+              <input class="form-control" type="file" (change)="onFileSelected($event)" name="name" multiple/>
+            </div>
+          </div><br>
+          <input class="p-button-success mr-2" pButton pRipple type="button" (click)="add()" value="Kaydet"><br>         
+        </form>      
+      </div>
+    </div>
+  </ng-template>
+  
+<ng-template #template2>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body popup-comment">
+      <div *ngIf="product">
+        <form [formGroup]="productUpdateForm">
+          <div class="product-popups-" *ngIf="productUpdateForm">
+            <img src="https://localhost:44312/uploads/{{product.imagePath}}" style="width: 71px;height: 115px;">
+            <div clas="product-popup-cntnt" style="margin-top:10px;">
+                <label>Ürün Adı</label>
+                <input id="productName" formControlName="productName" value="{{product.productName}}" class="form-control" type="text" />
+            </div>
+            <div clas="denem" style="margin-top:10px;">
+                <label>Ürün Acıklaması</label>
+                <textarea id="productDescription" formControlName="productDescription" value="{{product.productDescription}}" class="form-control"></textarea>
+            </div>
+            <div clas="denem">
+                <label>Kategori Seç</label>
+                <select id="categoryId" name="categoryId" formControlName="categoryId"  class="form-control">
+                  <option *ngFor="let category of categories"  value="{{category.categoryID}}">
+                    {{category.categoryName}}
+                  </option>
+                </select>
+            </div>
+            <div clas="popup-content" style="margin-top:10px;">
+                <label>Fiyat</label>
+                <input id="price" formControlName="price" value="{{product.price}}" class="form-control" type="text"/>
+            </div>
+            <div clas="popup-content" style="margin-top:10px;">
+                <label>Stok Adedi</label>
+                <input id="unitInStock" formControlName="unitInStock" value="{{product.unitInStock}}" class="form-control" type="text"/>
+            </div>
+            <div class="form-group" style="margin-top:10px;">
+                <label>Fotoğrafı Secin</label>
+                <input
+                  class="form-control"
+                  type="file"
+                  (change)="onFileSelectedUpdate($event)"
+                  name="name"
+                  multiple
+                />
+            </div>
+          </div> 
+          <input class="btn btn-success" type="button" (click)="update()" value="Kaydet" style="margin-top:10px;">         
+        </form>      
+      </div>
+    </div>
+  </ng-template>
+  
+
+
+  

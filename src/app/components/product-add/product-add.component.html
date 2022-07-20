@@ -1,0 +1,33 @@
+<div class="content">
+  <div class="col-md-12">
+      <div class="card-header"><h5 class="title">Ürün ekle</h5></div>
+      <div>
+        <form [formGroup]="productAddForm">
+          <div class="product-popup-img" *ngIf="productAddForm">
+            <label>Ürün Adı</label>
+            <input id="productName" formControlName="productName" class="form-control" type="text"  /><br>
+            <label>Ürün Açıklaması</label>
+            <textarea id="productDescription" formControlName="productDescription"  class="form-control"></textarea><br>
+            <label>Kategori Adı</label>
+            <select id="categoryId" name="categoryId" formControlName="categoryId"  class="form-control">
+              <option *ngFor="let category of categories"  value="{{category.categoryID}}">
+                {{category.categoryName}}
+              </option>
+            </select><br>
+            <!-- <input id="categoryId" formControlName="categoryId"  class="form-control" type="text"/> -->
+            <label>Fiyat</label>
+            <input id="price" formControlName="price"  class="form-control" type="text"/><br> 
+            <label>Stok Adedi</label>
+            <input id="unitInStock" formControlName="unitInStock"  class="form-control" type="text"/><br>
+            <label>Eklemek istediğiniz resmi seçiniz</label>
+            <div class="form-group">
+              <input class="form-control" type="file" (change)="onFileSelected($event)" name="name" multiple/>
+            </div>
+          </div><br>
+          <input class="p-button-success mr-2" pButton pRipple type="button" (click)="add()" value="Ürün Ekle"><br>         
+        </form>      
+      </div>
+      <br>
+      
+  </div>
+</div>

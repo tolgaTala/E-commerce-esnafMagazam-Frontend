@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="myorder" *ngIf="orders.length>0">
+            <div class="myorderbox" *ngFor="let order of orders">
+                <div class="order-info" >
+                    <div class="orderHeadContent" style="float: left; padding-left: 10px;">
+                        <div class="orderDate" >
+                            Sipariş Tarihi
+                       </div>
+                       <div class="orderDateDb" style="font-size: 12px;">
+                            {{order.orderDate | date:'dd-MM-yyyy HH:mm'}}
+                       </div>
+                    </div>
+                    <div class="orderHeadContent" style="float: left;">
+                        <div class="orderNo">
+                            Sipariş No
+                       </div>
+                       <div class="orderNoDb">
+                            {{order.orderId}}
+                       </div>
+                    </div>
+                    <div class="orderHeadContent" style="float: left;">
+                       <div class="orderSabip">
+                            Sipariş Sahibi
+                       </div>
+                       <div class="orderSabbipDb">
+                            {{order.firstName}} {{order.lastName}}
+                       </div>
+                    </div>
+                    <div class="orderHeadContent" style="float: left;">
+                        <div class="orderAmount">
+                             Total
+                        </div>
+                        <div class="orderAmountDb">
+                             {{order.amount}} TL
+                        </div>
+                     </div>
+                     <div class="orderHeadContent" style="float: left;">
+                        <div class="orderDetayButton">
+                            <input routerLink="/hesabim/orderdetail/{{order.orderId}}" type="submit" value="Sipariş Detayı" style="background-color: coral; height: 35px;text-align: center; padding-left: 20px; padding-right: 20px; border-radius: 3px;color: white; border:1px solid coral"/>
+                        </div>
+                     </div>
+                     <div style="clear: both;"></div>
+                </div>
+                <div class="order-detail">
+                    <div class="order-detail-content" *ngFor="let orderd of getOrderDetailsByOrderId(order.orderId)">
+                        <div class="order-state" style="float: left; width: 30%; margin-top: 15px;text-align: left;">
+                            <label *ngIf="orderd.status"><i style="color: #16be48; font-size: medium;" class="mdi mdi-checkbox-marked-circle">Teslim Edildi</i></label>
+                            <label *ngIf="!orderd.status"><i style="color: coral; font-size: medium;" class="mdi mdi-checkbox-marked-circle">Hazırlanıyor</i></label>
+                            <div>{{orderd.quantity}} ürün alındı</div>
+                        </div>
+                        <div routerLink="/productdetails/{{orderd.productId}}" class="order-image" style="float: left; width: 42px;align-items: center;height: 70px;display: flex; border: 1px solid #e2e2e2;cursor: pointer;">
+                            <img  src="https://localhost:44312/uploads/{{orderd.productImage}}" style="max-width: 40px; max-height: 70px; padding: 2px; border-radius: 2px; justify-content: center;align-items: center; display: flex;">
+                        </div>    
+                        <div style="clear:both"></div>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

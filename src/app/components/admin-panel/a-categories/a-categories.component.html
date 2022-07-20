@@ -1,0 +1,61 @@
+<p-confirmDialog [style]="{width: '60vw'}"></p-confirmDialog>
+<div class="card">
+    <p-table #dt [value]="categories" dataKey="categoryID" 
+    [rows]="6" [showCurrentPageReport]="true" [selectionPageOnly]="true" styleClass="p-mt-5"
+    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['categoryID','categoryName']">
+        <ng-template pTemplate="caption">
+            <div class="table-head">
+                <div class="flex table-left">
+                    <span class="p-input-icon-left ml-auto">                    
+                        <i class="pi pi-search"></i>                    
+                        <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Aranacak Kelime" />
+                    </span>
+                </div>
+                <div class="table-right">
+                    
+                    <button pButton pRipple label="Kategori Ekle" icon="pi pi-plus" class="p-button-success mr-2" (click)="openModal(template)"></button>
+                    <!-- <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" [disabled]="!selectedSellers || !selectedSellers.length"></button> -->
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th >#Category Id</th>
+                <th >Kategori Adı</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-category>
+            <tr>
+                <td>{{category.categoryID}}</td>
+                <td>{{category.categoryName}}</td>
+                <td>
+                    <button  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" ></button>
+                </td>     
+            </tr>
+        </ng-template>        
+    </p-table>
+</div>
+
+
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Kategori Ekle</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body popup-comment">
+      <div>
+        <form [formGroup]="categoryAddForm">
+          <div class="product-popup-img" *ngIf="categoryAddForm">
+            <label>Kategori Adı</label>
+            <input id="categoryName" formControlName="categoryName" class="form-control" type="text"  /><br>
+          </div>
+          <button (click)="AddCategory()" pButton pRipple class="p-button-success mr-2">Kaydet</button>         
+        </form>      
+      </div>
+    </div>
+  </ng-template>

@@ -1,0 +1,87 @@
+<head>
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="CartContainer">
+    <div class="Header">
+      <h3 class="Heading">Sepetim ({{ length }})</h3>
+      <h5 (click)="deleteAllBasket()" class="Action">Sepeti Boşalt</h5>
+    </div>
+    <div *ngIf="baskets.length == 0" class="Cart-empty">
+      <div style="margin-top: 20px">
+        <i class="mdi mdi-cart-outline"></i>
+        Sepetinizde ürün bulunmamaktadır.
+        <div
+          *ngIf="baskets.length == 0"
+          class="checkout"
+          style="float: right; margin-top: 37px"
+        >
+          <button routerLink="/products" class="button">
+            Alışverişe Başla
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="baskets.length != 0">
+      <div *ngFor="let basket of baskets" class="Cart-Items">
+        <div class="image-box">
+          <!-- https://localhost:44312/uploads/ -->
+          <img src="https://localhost:44312/uploads/{{basket.imagePath}}" style="height: 120px" />
+        </div>
+        <div class="about">
+          <h1 class="title">{{ basket.productName | lowercase }}</h1>
+          <h3 class="subtitle">{{ basket.companyName }}</h3>
+        </div>
+        <div class="counter">
+          <div (click)="quantityDown(basket)" class="btn">
+            <button class="disableButton" [disabled]="buttonDisabled">-</button>
+          </div>
+          <div class="count">{{ basket.quantity }}</div>
+          <div (click)="quantityUp(basket)" class="btn">+</div>
+        </div>
+        <div class="prices">
+          <div class="amount">
+            {{ basket.quantity * basket.price }} ₺
+          </div>
+        </div>
+        <div class="remove1">
+          <div>
+            <a (click)="removeBaskets(basket)"
+              ><i class="mdi mdi-delete"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="baskets.length != 0" class="checkout CartContainer2">
+    <div class="total">
+      <div>
+        <div class="Subtotal">Sipariş Özeti</div>
+        <div class="items">{{ length }} ürün</div>
+
+        <div class="total1">
+          <p>Ürünün toplamı</p>
+          <div class="total-amount">{{ total }} ₺</div>
+        </div>
+        <div class="kargo">
+          <p>Kargo toplam</p>
+          <div class="kargo-amount">11.99 ₺</div>
+        </div>
+        <div *ngIf="total>50" class="kargo">
+          <p>50₺ üzeri kargo..</p>
+          <div class="kargo1-amount">-11.99 ₺</div>
+        </div>
+        <hr style="margin-top: -2px" />
+        <div class="total2">
+          <p>Toplam Tutar</p>
+          <div class="total-amount">{{ maTtotal }} ₺</div>
+        </div>
+      </div>
+    </div>
+    <button class="button" routerLink="/basket/orderaddress">Siparişi Tamamla</button>
+  </div>
+</body>

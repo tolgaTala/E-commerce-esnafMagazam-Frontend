@@ -1,0 +1,91 @@
+<div class="profile">
+    <div class="header">
+        <h5 class="headerP">Kullanıcı Bilgilerim</h5>
+        <p (click)="deleteUser()" class="deleteUser">Hesabı Sil</p>
+    </div>
+    <div class="profileForm" *ngIf="profileForm">
+        <div class="ProfileInfo">
+        <h5 class="info">Üyelik Bilgilerim</h5>
+        <form *ngIf="user.companyName && user.taxNo" [formGroup]="esnafProfileForm">
+            <div class="name">
+            <div class="form-group-name">
+                <label for="firstName"><h6>Ad</h6></label>
+                <input formControlName="firstName" type="firstName" class="form-control"  value="{{user.firstName}}"/>
+            </div>
+            <div class="form-group-surname">
+                <label for="LastName"><h6>Soyad</h6></label>
+                <input formControlName="LastName" type="LastName" class="form-control"  value="{{user.lastName}}"/>
+            </div>
+            </div>
+            <div class="form-group-email">
+                <label for="email"><h6>E-mail</h6></label>
+                <input formControlName="email" type="email" class="form-control"  value="{{user.email}}"/>
+            </div>
+            <div class="form-group-phone">
+                <label for="phoneNumber"><h6>Cep Telefonu</h6></label>
+                <input formControlName="phoneNumber" type="phoneNumber" class="form-control" value="{{user.phoneNumber}}"  />
+            </div>
+            <div  class="form-group-companyName">
+                <label for="companyName"><h6>Şirket Adı</h6></label>
+                <input formControlName="companyName" type="text" class="form-control"  value="{{user.companyName}}"/>
+            </div>
+            <fieldset disabled>
+            <div class="form-group-taxNo">
+                <h6>Tax No</h6>
+                <input formControlName="taxNo" type="text" class="form-control"  value="{{user.taxNo}}" id="disabledInput" />
+            </div>
+            </fieldset>
+            <div class="save">
+                <button (click)="updateUserInfo()" type="button" class="btn btn-outline-warning">Kaydet</button>
+            </div>
+        </form>
+        <form *ngIf="!user.companyName && !user.taxNo" [formGroup]="profileForm">
+            <div class="name">
+            <div class="form-group-name">
+                <label for="firstName"><h6>Ad</h6></label>
+                <input formControlName="firstName" type="firstName" class="form-control"  value="{{user.firstName}}"/>
+            </div>
+            <div class="form-group-surname">
+                <label for="LastName"><h6>Soyad</h6></label>
+                <input formControlName="LastName" type="LastName" class="form-control"  value="{{user.lastName}}"/>
+            </div>
+            </div>
+            <div class="form-group-email">
+                <label for="email"><h6>E-mail</h6></label>
+                <input formControlName="email" type="email" class="form-control"  value="{{user.email}}"/>
+            </div>
+            <div class="form-group-phone">
+                <label for="phoneNumber"><h6>Cep Telefonu</h6></label>
+                <input formControlName="phoneNumber" type="phoneNumber" class="form-control" value="{{user.phoneNumber}}"  />
+            </div>
+            <div class="save">
+                <button (click)="updateUserInfo()" type="button" class="btn btn-outline-warning">Kaydet</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="changePassword">
+        <h5 class="uptadePassword">Şifre Güncelleme</h5>
+        <form [formGroup]="passwdChangeForm">
+            
+            <div class="form-group-oldPassword">
+                <label for="your_name"><h6>Eski Şİfre</h6></label>
+                <input formControlName="oldPasswd" type="text" class="form-control"  placeholder="Eski şifrenizi giriniz"/>
+            </div>
+            
+            <div class="form-group-newPassword1">
+                <label for="your_pass"><h6>Yeni Şifre</h6></label>
+                <input formControlName="newPasswd" type="password" class="form-control"  placeholder="yeni şifrenizi giriniz"/>
+            </div>
+            <div class="form-group-newPassword2">
+                <label for="your_pass"><h6>Yeni Şifre Tekrar</h6></label>
+                <input formControlName="newPasswd2" type="password" class="form-control"  placeholder="yeni Şifre tekrar"/>
+            </div>
+            <div class="save">
+                <button (click)="changePasswd()" type="button" class="btn btn-outline-warning">Güncelle</button>
+            </div>
+
+        </form>
+    </div>   
+    </div>
+</div>

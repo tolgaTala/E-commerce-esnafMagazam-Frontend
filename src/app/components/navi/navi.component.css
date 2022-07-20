@@ -1,0 +1,190 @@
+* {
+  /* margin: 0;
+  padding: 0; */
+  box-sizing: border-box;
+  font-family: "roboto", sans-serif;
+}
+.navbar1 {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 9;
+}
+.nav1 {
+  padding: 10px 10vw;
+  display: flex;
+  margin-right: 0;
+  justify-content: space-between;
+}
+.brand-logo {
+  height: 85px;
+  margin-top: 10px;
+  margin-bottom: -20px;
+  cursor: pointer;
+
+}
+.nav-items1 {
+  display: flex;
+  align-items: center;
+}
+.search {
+  width: 550px;
+  display: flex;
+}
+.search-box {
+  width: 80%;
+  height: 40px;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: 2px solid #d1d1d1;
+  border-right: none;
+  text-transform: capitalize;
+  background-color: rgba(243, 243, 243);
+  color: #a9a9a9;
+  outline: none;
+}
+.search-btn {
+  width: 15%;
+  height: 40px;
+  border: 2px solid #d1d1d1;
+  border-left: none;
+  outline: none;
+  cursor: pointer;
+  background: white;
+  background-color: rgba(243, 243, 243);
+  opacity: 0.8;
+  color: white;
+  font-size: 15px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.search-box::placeholder {
+  color: #a9a9a9;
+}
+.account {
+  margin-left: 100px;
+}
+[id^=btn]:checked + ul{
+    display: block;
+}
+.girisbtn{
+    display: none;
+}
+.account ul::before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  background: white;
+  right: 90px;
+  top: -8px;
+  border-left: 1px solid gray;
+  border-top: 1px solid gray;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+/* menu1 */
+.account .menu1 {
+  position: absolute;
+  background: white;
+  list-style: none;
+  top: 64px;
+  width: 200px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  display: none;
+  z-index: 10;
+  margin-left: -25px;
+}
+.menu1, .menu2{
+  padding: 0px !important;
+}
+.account .menu1 li {
+  line-height: 24px;
+  text-align: center;
+  margin: 10px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+.account .menu1 li:hover{
+    font-size: 17px;
+    transition: font-size 0.3s;
+}
+/* menu2 */
+.account .menu2 {
+  position: absolute;
+  background: white;
+  list-style: none;
+  top: 64px;
+  width: 200px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  display: none;
+  z-index: 10;
+  margin-left: -25px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+.account .menu2 li {
+  line-height: 20px;
+  font-size: 13px;
+  margin: 8px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.account .menu2 li:hover{
+    color:rgba(242, 122, 26, 0.9);
+    transition: font-size 0.3s;
+}
+.giris {
+  background-color: rgba(242, 122, 26, 0.9);
+  color: white;
+}
+.nav-items1 a {
+  float: right;
+  margin-left: 20px;
+  text-decoration: none;
+  color: black;
+  display: block;
+  transition: 0.5s;
+}
+.links-container {
+  width: 100%;
+  display: flex;
+  padding-bottom: 10px;
+  justify-content: center;
+  list-style: none;
+  border-bottom: 1px solid #d1d1d1;
+  position: sticky;
+  transition: top 0.3s;
+}
+
+.link {
+  text-transform: capitalize;
+  padding: 0 10px;
+  margin: 0 5px;
+  text-decoration: none;
+  color: #383838;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+.link:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.mdi {
+  color: black;
+  font-size: x-large;
+  transition: 0.5s;
+}
+
+.nav-items1 a:hover,
+.mdi:hover {
+  color: coral;
+}

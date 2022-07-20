@@ -1,0 +1,7 @@
+.table-head{
+    display: flex;
+    justify-content: space-between;
+}
+.p-button-success{
+    margin-right: 10px;
+}

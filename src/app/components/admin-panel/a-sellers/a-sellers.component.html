@@ -1,0 +1,87 @@
+<p-confirmDialog [style]="{width: '60vw'}"></p-confirmDialog>
+<div class="card" *ngIf="sellers.length>0">
+    <p-table #dt [value]="sellers" dataKey="userId" sortMode="multiple" selectionMode="multiple" [(selection)]="selectedSellers"
+    [rows]="6" [showCurrentPageReport]="true" [selectionPageOnly]="true" styleClass="p-mt-5"
+    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['userName','email','lastName','taxNo','companyName']">
+        <ng-template pTemplate="caption">
+            <div class="table-head">
+                <div class="flex table-left">
+                    <span class="p-input-icon-left ml-auto">                    
+                        <i class="pi pi-search"></i>                    
+                        <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Aranacak Kelime" />
+                    </span>
+                </div>
+                <div class="table-right">
+                    <button pButton pRipple label="Esnaf Sil" icon="pi pi-trash" class="p-button-danger" [disabled]="!selectedSellers || !selectedSellers.length"></button>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th >#Id</th>
+                <th >Ad</th>
+                <th >Soyad</th>
+                <th>E-Mail</th>            
+                <th>Telefon No</th>            
+                <th>Şirket</th>
+                <th>TaxNo</th>
+                <th>Durum</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-seller>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="seller"></p-tableCheckbox>
+                </td>
+                <td>{{seller.userId}}</td>
+                <td>{{seller.firstName}}</td>
+                <td>{{seller.LastName}}</td>
+                <td>{{seller.email}}</td>
+                <td>{{seller.phoneNumber}}</td>
+                <td>{{seller.companyName}}</td>
+                <td>{{seller.taxNo}}</td>                
+                <td>{{seller.status}}</td>   
+                <td>
+                    <button (click)="openModal(template1,seller)" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" ></button>
+                </td>     
+            </tr>
+        </ng-template>        
+    </p-table>
+</div>
+
+
+
+<ng-template #template1>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Kullanıcıyı Güncelle</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body popup-comment">
+      <div>
+        <form [formGroup]="sellerUpdateForm">
+          <div class="product-popup-img" *ngIf="sellerUpdateForm">
+            <label>Ad</label>
+            <input id="firstName" formControlName="firstName" class="form-control" type="text"  /><br>
+            <label>Soyad</label>
+            <input id="LastName" formControlName="LastName"  class="form-control"/><br>
+            <label>E-Mail</label>
+            <input id="email" formControlName="email"  class="form-control" type="text"/><br>
+            <label>Telefon Numarası</label>
+            <input id="phoneNumber" formControlName="phoneNumber"  class="form-control" type="text"/><br>
+            <label>Şirket Adı</label>
+            <input id="companyName" formControlName="companyName"  class="form-control" type="text"/><br>
+            <label>Vergi No</label>
+            <input id="taxNo" formControlName="taxNo"  class="form-control" type="text"/><br>
+          </div>
+          <button (click)="updateSellerInfo()" pButton pRipple class="p-button-success mr-2">Kaydet</button>         
+        </form>      
+      </div>
+    </div>
+  </ng-template>
